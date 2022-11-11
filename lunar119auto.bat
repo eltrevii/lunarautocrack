@@ -1,6 +1,6 @@
 @echo off & set "_v=1.19"
 title Lunar Launcher (%_v%) ^| by aritz331_ for Aritz's Utils - an aritz331_ original series
-if not exist %temp%\331 (md %temp%\.331) else (attrib -s -h -r %temp%\.331)
+if not exist %temp%\.331 (md %temp%\.331) else (attrib -s -h -r %temp%\.331)
 cd %temp%\.331
 
 set "_331=%userprofile%\.331"
