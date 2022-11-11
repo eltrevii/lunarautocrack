@@ -53,7 +53,7 @@ exit /b
 
 :dl-lunar
 echo Downloading Lunar
-curl -kL "https://aritz331.github.io/lunarauto/lunar%_vv%.7z" -o lunar.7z --progress-bar
+curl -kL "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunar%_vv%.7z" -o lunar.7z --progress-bar
 echo.
 call :7z-lunar
 exit /b
