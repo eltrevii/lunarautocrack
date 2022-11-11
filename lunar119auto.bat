@@ -1,6 +1,5 @@
 @echo off & setlocal EnableDelayedExpansion && set "_v=1.19" & set "_vv=!_v:.=!"
 title Lunar Launcher (%_v%) ^| by aritz331_ for Aritz's Utils - an aritz331_ original series
-pause
 if not exist %temp%\.331 (md %temp%\.331) else (attrib -s -h -r %temp%\.331)
 cd %temp%\.331
 
@@ -41,7 +40,7 @@ exit
 
 :check
 echo ok>s1.txt
-curl -kLs "https://aritz331.github.io/tl/s.txt" -o s2.txt
+curl -kLs "https://aritz331.github.io/lunarauto/s.txt" -o s2.txt
 fc s1.txt s2.txt>nul || goto not
 exit /b
 
