@@ -23,7 +23,7 @@ if not exist %_lunarpath%\java\  (
 
 if not exist %_lunarpath%\lunar\ (
 	7z >nul 2>&1 || call :dl-7z
-	call :dl-tl
+	call :dl-lunar
 )
 
 call :start
