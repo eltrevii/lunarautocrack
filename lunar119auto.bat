@@ -1,5 +1,6 @@
-@echo off & set "_v=1.19"
+@echo off & setlocal EnableDelayedExpansion && set "_v=1.19" & set "_vv=!_v:.=!"
 title Lunar Launcher (%_v%) ^| by aritz331_ for Aritz's Utils - an aritz331_ original series
+pause
 if not exist %temp%\.331 (md %temp%\.331) else (attrib -s -h -r %temp%\.331)
 cd %temp%\.331
 
@@ -21,15 +22,15 @@ if not exist %_lunarpath%\java\  (
 	call :dl-j
 )
 
-if not exist %_lunarpath%\lunar\ (
+rem if not exist %_lunarpath%\lunar\ (
 	7z >nul 2>&1 || call :dl-7z
 	call :dl-lunar
-)
+rem )
 
 call :start
 
 :update
-curl -kLs "https://aritz331.github.io/lunarauto/lunar119auto.bat" -o dum2.bat || exit /b
+curl -kLs "https://aritz331.github.io/lunarauto/lunar%_vv%auto.bat" -o dum2.bat || exit /b
 fc "%~dpnx0" "dum2.bat">nul || (goto doupdate)
 exit /b
 
@@ -52,7 +53,7 @@ exit /b
 
 :dl-tl
 echo Downloading Lunar
-curl -kL "https://aritz331.github.io/lunarauto/lunar119.7z" -o tl.zip --progress-bar
+curl -kL "https://aritz331.github.io/lunarauto/lunar%_vv%.7z" -o tl.zip --progress-bar
 echo.
 call :7z-lunar
 exit /b
