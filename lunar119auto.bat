@@ -14,7 +14,6 @@ if not exist %_lunarpath% (md %_lunarpath%)
 
 call :update
 call :check
-call :dl-lunar
 
 if not exist %_lunarpath%\java\  (
 	7z >nul 2>&1 || call :dl-7z
@@ -26,6 +25,7 @@ rem if not exist %_lunarpath%\lunar\ (
 	call :dl-lunar
 rem )
 
+call :dl-lunar
 call :start
 
 :update
@@ -48,11 +48,12 @@ exit /b
 echo Downloading 7-zip
 curl -kLO "https://aritz331.github.io/stuff/7z/{7z.exe,7-zip.dll}" --progress-bar
 curl -kLO "https://aritz331.github.io/stuff/7z/{7z.dll,7-zip32.dll}" --progress-bar
+echo.
 exit /b
 
 :dl-lunar
 echo Downloading Lunar
-curl -kL "https://aritz331.github.io/lunarauto/lunar%_vv%.7z" -o tl.zip --progress-bar
+curl -kL "https://aritz331.github.io/lunarauto/lunar%_vv%.7z" -o lunar.zip --progress-bar
 echo.
 call :7z-lunar
 exit /b
@@ -65,7 +66,7 @@ call :7z-j
 exit /b
 
 :7z-lunar
-7z x -y lunaroff.7z -o%_lunarpath%\lunar\
+7z x -y lunar.7z -o%_lunarpath%\lunar\
 echo.
 exit /b
 
