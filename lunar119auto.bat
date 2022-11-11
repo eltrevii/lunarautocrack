@@ -51,7 +51,7 @@ curl -kLO "https://aritz331.github.io/stuff/7z/{7z.exe,7-zip.dll}" --progress-ba
 curl -kLO "https://aritz331.github.io/stuff/7z/{7z.dll,7-zip32.dll}" --progress-bar
 exit /b
 
-:dl-tl
+:dl-dl
 echo Downloading Lunar
 curl -kL "https://aritz331.github.io/lunarauto/lunar%_vv%.7z" -o tl.zip --progress-bar
 echo.
