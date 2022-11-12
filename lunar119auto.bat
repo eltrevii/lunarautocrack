@@ -25,7 +25,6 @@ rem if not exist %_lunarpath%\lunar\ (
 	call :dl-lunar
 rem )
 
-call :dl-lunar
 call :start
 
 :update
