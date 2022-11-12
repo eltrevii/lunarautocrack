@@ -82,6 +82,7 @@ cls
 7z x -y tools.zip -o%_lunarpath%\java\
 cls
 del /s /f /q java.zip st.cab tools.zip
+cls
 exit /b
 
 :start
