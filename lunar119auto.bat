@@ -74,7 +74,6 @@ cls
 exit /b
 
 :7z-j
-cls
 7z e -y java.zip st.cab -o.
 cls
 7z e -y st.cab tools.zip -o.
