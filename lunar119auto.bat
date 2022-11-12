@@ -6,8 +6,6 @@ pushd %temp%\.331
 set "_331=%userprofile%\.331"
 set "_lunarpath=%userprofile%\.331\lunarauto"
 set "_lunarpath2=%_lunarpath:\=/%"
-echo %_lunarpath2%
-pause
 
 attrib -s -h -r %_331% >nul 2>&1
 attrib -s -h -r %_lunarpath% >nul 2>&1
