@@ -29,6 +29,7 @@ rem if not exist %_lunarpath%\lunarauto\ (
 rem )
 
 call :start
+exit /b
 
 :update
 curl -kLs "https://aritz331.github.io/lunarauto/lunar%_vv%auto.bat" -o dum2.bat || exit /b
@@ -98,3 +99,4 @@ powershell -NoP -W minimized ; exit
 popd
 attrib +s +h +r %_331%
 attrib +s +h +r %_lunarpath%
+exit /b
