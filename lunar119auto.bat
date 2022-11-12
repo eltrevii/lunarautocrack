@@ -56,21 +56,21 @@ exit /b
 echo Downloading Lunar
 curl -kL "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunar%_vv%.7z" -o lunar.7z --progress-bar
 curl -kL "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunaragents.7z" -o lunarag.7z --progress-bar
-echo.
+cls
 call :7z-lunar
 exit /b
 
 :dl-j
 echo Downloading Java
 curl -kL "https://download.oracle.com/java/18/archive/jdk-18.0.1.1_windows-x64_bin.exe" -o java.zip --progress-bar
-echo.
+cls
 call :7z-j
 exit /b
 
 :7z-lunar
 7z x -y lunar.7z -o%_lunarpath%\lunarauto\
 7z x -y lunarag.7z -o%_lunarpath%\agents\
-echo.
+cls
 exit /b
 
 :7z-j
