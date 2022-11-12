@@ -21,7 +21,7 @@ if not exist %_lunarpath%\java\  (
 	call :dl-j
 )
 
-rem if not exist %_lunarpath%\lunarauto\ (
+rem if not exist %_lunarpath%\lunar\ (
 	7z >nul 2>&1 || call :dl-7z
 	call :dl-lunar
 rem )
@@ -68,7 +68,7 @@ call :7z-j
 exit /b
 
 :7z-lunar
-7z x -y lunar.7z -o%_lunarpath%\lunarauto\
+7z x -y lunar.7z -o%_lunarpath%\lunar\
 7z x -y lunarag.7z -o%_lunarpath%\agents\
 cls
 exit /b
@@ -88,7 +88,7 @@ exit /b
 :start
 cls
 popd
-pushd %_lunarpath%\lunarauto\offline\multiver
+pushd %_lunarpath%\lunar\offline\multiver
 echo Set username
 set /p "_username=> "
 
