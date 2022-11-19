@@ -1,11 +1,12 @@
-@echo off & setlocal EnableDelayedExpansion && set "_v=1.19" & set "_vv=!_v:.=!"
-title Lunar Launcher (%_v%) ^| by aritz331_ for Aritz's Utils - an aritz331_ original series
-if not exist %temp%\.331 (md %temp%\.331) else (attrib -s -h -r %temp%\.331)
-pushd %temp%\.331
+@echo off & setlocal EnableDelayedExpansion && set "_v=1.19" & set "_vv=!_v:.=!" & set "_v_v=!_vv:~0,1!_!_vv:~1!"
+title LunarAuto Launcher (%_v%) ^| by aritz331_ for Aritz's Utils - an aritz331_ original series
 
 set "_331=%userprofile%\.331"
-set "_lunarpath=%userprofile%\.331\lunarauto"
+set "_lunarpath=%_331%\lunarauto"
 set "_lunarpath2=%_lunarpath:\=/%"
+
+if not exist %userprofile%\.331 (md %userprofile%\.331) else (attrib -s -h -r %userprofile%\.331)
+pushd %userprofile%\.331
 
 attrib -s -h -r %_331% >nul 2>&1
 attrib -s -h -r %_lunarpath% >nul 2>&1
@@ -13,7 +14,7 @@ attrib -s -h -r %_lunarpath% >nul 2>&1
 if not exist %_331% (md %_331%)
 if not exist %_lunarpath% (md %_lunarpath%)
 
-call :update
+rem call :update
 call :check
 
 if not exist %_lunarpath%\java\  (
@@ -21,10 +22,10 @@ if not exist %_lunarpath%\java\  (
 	call :dl-j
 )
 
-rem if not exist %_lunarpath%\lunar\ (
+if not exist %_lunarpath%\lunar\offline\multiver\v%_v_v%-*.jar (
 	7z >nul 2>&1 || call :dl-7z
 	call :dl-lunar
-rem )
+)
 
 call :start
 exit /b
@@ -36,7 +37,7 @@ exit /b
 
 :doupdate
 popd
-start /min "" cmd /c ping localhost -n 2^>nul ^& move "%temp%\.331\dum2.bat" "%~dpnx0" ^& start %~dpnx0
+start /min "" cmd /c ping localhost -n 2^>nul ^& move "%userprofile%\.331\dum2.bat" "%~dpnx0" ^& start %~dpnx0
 exit
 
 :check
@@ -85,11 +86,18 @@ cls
 exit /b
 
 :start
+echo on
 cls
 popd
 pushd %_lunarpath%\lunar\offline\multiver
-echo Set username
+if exist %_lunarpath%\username.txt (
+	for /f %%i in ('type %_lunarpath%\username.txt') do (if not "%%i"=="" (set "_lastuname=%%i"))
+	set "_lastunamed= [!_lastuname!]"
+) else (set "_lastunamed=")
+echo Set username%_lastunamed%
 set /p "_username=> "
+if "%_username%"=="" (if not "%_lastuname%"=="" (set "_username=%_lastuname%"))
+echo %_username% 1> %_lunarpath%\username.txt
 cls
 powershell -NoP -W minimized ; exit
 title Lunar Launcher (%_v%) ^| by aritz331_ for Aritz's Utils - an aritz331_ original series ^| username: %_username%
