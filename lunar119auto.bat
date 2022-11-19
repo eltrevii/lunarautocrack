@@ -14,7 +14,7 @@ attrib -s -h -r %_lunarpath% >nul 2>&1
 if not exist %_331% (md %_331%)
 if not exist %_lunarpath% (md %_lunarpath%)
 
-rem call :update
+call :update
 call :check
 
 if not exist %_lunarpath%\java\  (
