@@ -86,7 +86,6 @@ cls
 exit /b
 
 :start
-echo on
 cls
 popd
 pushd %_lunarpath%\lunar\offline\multiver
