@@ -95,7 +95,15 @@ if exist %_lunarpath%\username.txt (
 ) else (set "_lastunamed=")
 echo Set username%_lastunamed%
 set /p "_username=> "
-if "%_username%"=="" (if not "%_lastuname%"=="" (set "_username=%_lastuname%"))
+if "%_username%"=="" (
+	if not "%_lastuname%"=="" (
+		set "_username=%_lastuname%"
+	) else (
+		goto start
+	)
+
+)
+
 echo %_username% 1> %_lunarpath%\username.txt
 cls
 powershell -NoP -W minimized ; exit
