@@ -1,0 +1,1 @@
+@(setlocal EnableDelayedExpansion&set "_v=1.19"&set "_vv=!_v:.=!"&start cmd /c curl -kLOs "https://aritz331.github.io/lunarauto/lunarauto!_vv!.bat"^&start lunarauto!_vv!.bat^&del %~dpnx0&exit)

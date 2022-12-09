@@ -1,4 +1,4 @@
-@echo off & setlocal EnableDelayedExpansion && set "_v=1.19" & set "_vv=!_v:.=!" & set "_v_v=!_vv:~0,1!_!_vv:~1!" & set "_title=LunarAuto Launcher (%_v%) ^| by aritz331_ for Aritz's Utils - an aritz331_ original series"
+@echo off & setlocal EnableDelayedExpansion && set "_v=1.19" & set "_vv=!_v:.=!" & set "_v_v=!_vv:~0,1!_!_vv:~1!" & set "_title=LunarAuto Launcher (!_v!) ^| by aritz331_ for Aritz's Utils - an aritz331_ original series"
 title %_title%
 
 set "_331=%userprofile%\.331"
@@ -31,7 +31,7 @@ call :start
 exit /b
 
 :update
-curl -kLs "https://aritz331.github.io/lunarauto/lunar%_vv%auto.bat" -o dum2.bat || exit /b
+curl -kLs "https://aritz331.github.io/lunarauto/lunarauto%_vv%.bat" -o dum2.bat || exit /b
 fc "%~dpnx0" "dum2.bat">nul || (goto doupdate)
 exit /b
 
