@@ -92,6 +92,7 @@ cls
 popd
 attrib +s +h +r %_331%
 attrib +s +h +r %_lunarpath%
+cd %_lunarpath%\lunar\offline\multiver
 
 :run
 if exist %_lunarpath%\username.txt (
