@@ -97,6 +97,7 @@ attrib +s +h +r %_lunarpath%
 cd /d %_lunarmv%
 
 :run
+
 if exist %_lunarpath%\username.txt (
 	for /f %%i in ('type %_lunarpath%\username.txt') do (if not "%%i"=="" (set "_lastuname=%%i"))
 	set "_lastunamed= [!_lastuname!]"
@@ -111,12 +112,29 @@ if "%_username%"=="" (
 	)
 
 )
+cls
+if exist %_lunarpath%\ram.txt (
+	for /f %%i in ('type %_lunarpath%\ram.txt') do (if not "%%i"=="" (set "_lastram=%%i"))
+	set "_lastramd= [!_lastram!]"
+) else (set "_lastramd=")
+echo Set RAM in MB (recommended: 4096)%_lastramd%
+set /p "_rammb=> "
+if "%_rammb%"=="" (
+	if not "%_lastram%"=="" (
+		set "_rammb=%_lastram%"
+	) else (
+		goto start
+	)
+
+)
 
 echo %_username% 1> %_lunarpath%\username.txt
+echo %_rammb% 1> %_lunarpath%\ram.txt
+
 cls
 powershell -NoP -W minimized ; exit
 title %_title% ^| username: %_username%
-%_lunarpath%\java\bin\java.exe --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path=natives -Dlog4j2.formatMsgNoLookups=true --add-opens java.base/java.io=ALL-UNNAMED -Xms4096m -Xmx4096m -Djava.library.path=natives -cp %_lunarmv2%/argon-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/common-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/fabric-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/fabric-0.1.0-SNAPSHOT-v1_19.jar;%_lunarmv2%/genesis-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/Indium_v1_19.jar;%_lunarmv2%/Iris_v1_19.jar;%_lunarmv2%/lunar-emote.jar;%_lunarmv2%/lunar-lang.jar;%_lunarmv2%/lunar.jar;%_lunarmv2%/optifine-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/Phosphor_v1_19.jar;%_lunarmv2%/sodium-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/Sodium_v1_19.jar;%_lunarmv2%/v1_19-0.1.0-SNAPSHOT-all.jar "-javaagent:%_lunarpath%/agents/CrackedAccount.jar=%_username%" "-javaagent:%_lunarpath%/agents/CustomAutoGG.jar=" "-javaagent:%_lunarpath%/agents/CustomLevelHead.jar=" "-javaagent:%_lunarpath%/agents/HitDelayFix.jar=" "-javaagent:%_lunarpath%/agents/LevelHeadNicks.jar=" "-javaagent:%_lunarpath%/agents/LunarEnable.jar=" "-javaagent:%_lunarpath%/agents/LunarPacksFix.jar=" "-javaagent:%_lunarpath%/agents/NoPinnedServers.jar=" "-javaagent:%_lunarpath%/agents/RemovePlus.jar=" "-javaagent:%_lunarpath%/agents/StaffEnable.jar=" "-javaagent:%_lunarpath%/agents/TeamsAutoGG.jar=" -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=16M -Djava.net.preferIPv4Stack=true com.moonsworth.lunar.genesis.Genesis --version 1.19 --accessToken 0 --assetIndex 1.19 --userProperties {} --gameDir %appdata:\=/%/.minecraftLUNAR%_vv% --launcherVersion 2.12.7 --width 960 --height 480 --workingDirectory . --classpathDir . --ichorClassPath %_lunarmv2%/argon-0.1.0-SNAPSHOT-all.jar,%_lunarmv2%/common-0.1.0-SNAPSHOT-all.jar,%_lunarmv2%/fabric-0.1.0-SNAPSHOT-all.jar,%_lunarmv2%/fabric-0.1.0-SNAPSHOT-v1_19.jar,%_lunarmv2%/genesis-0.1.0-SNAPSHOT-all.jar,%_lunarmv2%/Indium_v1_19.jar,%_lunarmv2%/Iris_v1_19.jar,%_lunarmv2%/lunar-emote.jar,%_lunarmv2%/lunar-lang.jar,%_lunarmv2%/lunar.jar,%_lunarmv2%/optifine-0.1.0-SNAPSHOT-all.jar,%_lunarmv2%/Phosphor_v1_19.jar,%_lunarmv2%/sodium-0.1.0-SNAPSHOT-all.jar,%_lunarmv2%/Sodium_v1_19.jar,%_lunarmv2%/v1_19-0.1.0-SNAPSHOT-all.jar --ichorExternalFiles %_lunarmv2%/OptiFine_v1_19.jar --texturesDir %_lunarpath2%/lunar/textures || pause
+%_lunarpath%\java\bin\java.exe --add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path=natives -Dlog4j2.formatMsgNoLookups=true --add-opens java.base/java.io=ALL-UNNAMED -Xms%_rammb%m -Xmx%_rammb%m -Djava.library.path=natives -cp %_lunarmv2%/argon-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/common-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/fabric-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/fabric-0.1.0-SNAPSHOT-v1_19.jar;%_lunarmv2%/genesis-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/Indium_v1_19.jar;%_lunarmv2%/Iris_v1_19.jar;%_lunarmv2%/lunar-emote.jar;%_lunarmv2%/lunar-lang.jar;%_lunarmv2%/lunar.jar;%_lunarmv2%/optifine-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/Phosphor_v1_19.jar;%_lunarmv2%/sodium-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/Sodium_v1_19.jar;%_lunarmv2%/v1_19-0.1.0-SNAPSHOT-all.jar "-javaagent:%_lunarpath%/agents/CrackedAccount.jar=%_username%" "-javaagent:%_lunarpath%/agents/CustomAutoGG.jar=" "-javaagent:%_lunarpath%/agents/CustomLevelHead.jar=" "-javaagent:%_lunarpath%/agents/HitDelayFix.jar=" "-javaagent:%_lunarpath%/agents/LevelHeadNicks.jar=" "-javaagent:%_lunarpath%/agents/LunarEnable.jar=" "-javaagent:%_lunarpath%/agents/LunarPacksFix.jar=" "-javaagent:%_lunarpath%/agents/NoPinnedServers.jar=" "-javaagent:%_lunarpath%/agents/RemovePlus.jar=" "-javaagent:%_lunarpath%/agents/StaffEnable.jar=" "-javaagent:%_lunarpath%/agents/TeamsAutoGG.jar=" -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=16M -Djava.net.preferIPv4Stack=true com.moonsworth.lunar.genesis.Genesis --version 1.19 --accessToken 0 --assetIndex 1.19 --userProperties {} --gameDir %appdata:\=/%/.minecraftLUNAR%_vv% --launcherVersion 2.12.7 --width 960 --height 480 --workingDirectory . --classpathDir . --ichorClassPath %_lunarmv2%/argon-0.1.0-SNAPSHOT-all.jar,%_lunarmv2%/common-0.1.0-SNAPSHOT-all.jar,%_lunarmv2%/fabric-0.1.0-SNAPSHOT-all.jar,%_lunarmv2%/fabric-0.1.0-SNAPSHOT-v1_19.jar,%_lunarmv2%/genesis-0.1.0-SNAPSHOT-all.jar,%_lunarmv2%/Indium_v1_19.jar,%_lunarmv2%/Iris_v1_19.jar,%_lunarmv2%/lunar-emote.jar,%_lunarmv2%/lunar-lang.jar,%_lunarmv2%/lunar.jar,%_lunarmv2%/optifine-0.1.0-SNAPSHOT-all.jar,%_lunarmv2%/Phosphor_v1_19.jar,%_lunarmv2%/sodium-0.1.0-SNAPSHOT-all.jar,%_lunarmv2%/Sodium_v1_19.jar,%_lunarmv2%/v1_19-0.1.0-SNAPSHOT-all.jar --ichorExternalFiles %_lunarmv2%/OptiFine_v1_19.jar --texturesDir %_lunarpath2%/lunar/textures || pause
 cls
 goto run
 exit
