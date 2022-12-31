@@ -52,22 +52,22 @@ exit /b
 
 :dl-7z
 echo Downloading 7-zip
-curl -kLO "https://aritz331.github.io/stuff/7z/{7z.exe,7-zip.dll}" --progress-bar
-curl -kLO "https://aritz331.github.io/stuff/7z/{7z.dll,7-zip32.dll}" --progress-bar
+curl -#kLO "https://aritz331.github.io/stuff/7z/{7z.exe,7-zip.dll}"
+curl -#kLO "https://aritz331.github.io/stuff/7z/{7z.dll,7-zip32.dll}"
 echo.
 exit /b
 
 :dl-lunar
 echo Downloading Lunar
-curl -kL "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunar%_vv%.7z" -o lunar.7z --progress-bar
-curl -kL "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunaragents.7z" -o lunarag.7z --progress-bar
+curl -#kL "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunar%_vv%.7z" -o lunar.7z
+curl -#kL "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunaragents.7z" -o lunarag.7z
 cls
 call :7z-lunar
 exit /b
 
 :dl-j
 echo Downloading Java
-curl -kL "https://download.oracle.com/java/18/archive/jdk-18.0.1.1_windows-x64_bin.exe" -o java.zip --progress-bar
+curl -#kL "https://download.oracle.com/java/18/archive/jdk-18.0.1.1_windows-x64_bin.exe" -o java.zip
 cls
 call :7z-j
 exit /b
