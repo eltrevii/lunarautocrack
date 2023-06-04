@@ -3,7 +3,7 @@ title %_title%
 
 cls
 
-set "_331=%auserprofile%\.331"
+set "_331=%userprofile%\.331"
 set "_lunarpath=%_331%\lunarauto"
 set "_lunarpath2=%_lunarpath:\=/%"
 set "_lunarmv=%_lunarpath%\lunar\offline\multiver"
@@ -136,11 +136,11 @@ if "%_rammb%"=="" (
 	)
 
 )
-cls
 
 echo %_username% 1> %_lunarpath%\username.txt
 echo %_rammb% 1> %_lunarpath%\ram.txt
 
+cls
 
 powershell -NoP -W minimized ; exit
 title %_title% ^| username: %_username%
