@@ -3,14 +3,14 @@ title %_title%
 
 cls
 
-set "_331=%userprofile%\.331"
+set "_331=%auserprofile%\.331"
 set "_lunarpath=%_331%\lunarauto"
 set "_lunarpath2=%_lunarpath:\=/%"
 set "_lunarmv=%_lunarpath%\lunar\offline\multiver"
 set "_lunarmv2=%_lunarmv:\=/%"
 
-if not exist %userprofile%\.331 (md %userprofile%\.331) else (attrib -s -h -r %userprofile%\.331)
-pushd %userprofile%\.331
+if not exist %_331% (md %_331%) else (attrib -s -h -r %_331%)
+pushd %_331%
 
 attrib -s -h -r %_331% >nul 2>&1
 attrib -s -h -r %_lunarpath% >nul 2>&1
@@ -24,11 +24,18 @@ call :check
 if not exist %_lunarpath%\java\  (
 	7z >nul 2>&1 || call :dl-7z
 	call :dl-j
+	call :7z-j
 )
 
 if not exist %_lunarmv%\v%_v_v%-*.jar (
 	7z >nul 2>&1 || call :dl-7z
-	call :dl-lunar
+	if not exist %_331%\lunar.7z (
+		call :7z-lunar | (
+			call :dl-lunar
+			call :7z-lunar
+		)
+	)
+	call 
 )
 
 call :start
@@ -41,7 +48,7 @@ exit /b
 
 :doupdate
 popd
-start /min "" cmd /c ping localhost -n 2^>nul ^& move "%userprofile%\.331\dum2.bat" "%~dpnx0" ^& start "" cmd /c "%~dpnx0"
+start /min "" cmd /c ping localhost -n 2^>nul ^& move "%_331%\dum2.bat" "%~dpnx0" ^& start "" cmd /c "%~dpnx0"
 exit
 
 :check
@@ -62,14 +69,12 @@ echo Downloading Lunar
 curl -#kL "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunar%_vv%.7z" -o lunar.7z
 curl -#kL "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunaragents.7z" -o lunarag.7z
 cls
-call :7z-lunar
 exit /b
 
 :dl-j
 echo Downloading Java
 curl -#kL "https://download.oracle.com/java/18/archive/jdk-18.0.1.1_windows-x64_bin.exe" -o java.zip
 cls
-call :7z-j
 exit /b
 
 :7z-lunar
