@@ -1,8 +1,7 @@
-rem @echo off
-setlocal EnableDelayedExpansion && set "_v=1.19" & set "_vv=!_v:.=!" & set "_v_v=!_vv:~0,1!_!_vv:~1!" & set "_title=LunarAuto Launcher (!_v!) ^^| by aritz331_ for Aritz's Utils - an aritz331_ original series"
+@echo off & setlocal EnableDelayedExpansion && set "_v=1.19" & set "_vv=!_v:.=!" & set "_v_v=!_vv:~0,1!_!_vv:~1!" & set "_title=LunarAuto Launcher (!_v!) ^^| by aritz331_ for Aritz's Utils - an aritz331_ original series"
 title %_title%
 
-rem cls
+cls
 
 set "_331=%userprofile%\.331"
 set "_lunarpath=%_331%\lunarauto"
@@ -80,34 +79,34 @@ exit /b
 echo Downloading Lunar
 curl -#kL "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunar%_vv%.7z" -o lunar.7z
 curl -#kL "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunaragents.7z" -o lunarag.7z
-rem cls
+cls
 exit /b
 
 :dl-j
 echo Downloading Java
 curl -#kL "https://download.oracle.com/java/18/archive/jdk-18.0.1.1_windows-x64_bin.exe" -o java.zip
-rem cls
+cls
 exit /b
 
 :7z-lunar
 7z x -y lunar.7z -o%_lunarpath%\lunar\
 7z x -y lunarag.7z -o%_lunarpath%\agents\
-rem cls
+cls
 exit /b
 
 :7z-j
 7z e -y java.zip st.cab -o.
-rem cls
+cls
 7z e -y st.cab tools.zip -o.
-rem cls
+cls
 7z x -y tools.zip -o%_lunarpath%\java\
-rem cls
+cls
 del /s /f /q java.zip st.cab tools.zip
-rem cls
+cls
 exit /b
 
 :start
-rem cls
+cls
 popd
 attrib +s +h +r %_331%
 attrib +s +h +r %_lunarpath%
@@ -130,7 +129,7 @@ if "%_username%"=="" (
 	)
 
 )
-rem cls
+cls
 
 if exist %_lunarpath%\ram.txt (
 	for /f %%i in ('type %_lunarpath%\ram.txt') do (if not "%%i"=="" (set "_lastram=%%i"))
@@ -152,7 +151,7 @@ if "%_rammb%"=="" (
 echo %_username% 1> %_lunarpath%\username.txt
 echo %_rammb% 1> %_lunarpath%\ram.txt
 
-rem cls
+cls
 
 set "_jvmargs=--add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path=natives -Dlog4j2.formatMsgNoLookups=true --add-opens java.base/java.io=ALL-UNNAMED -Xms%_rammb%m -Xmx%_rammb%m -Djava.library.path=natives -cp %_lunarmv2%/argon-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/common-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/fabric-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/fabric-0.1.0-SNAPSHOT-v1_19.jar;%_lunarmv2%/genesis-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/Indium_v1_19.jar;%_lunarmv2%/Iris_v1_19.jar;%_lunarmv2%/lunar-emote.jar;%_lunarmv2%/lunar-lang.jar;%_lunarmv2%/lunar.jar;%_lunarmv2%/optifine-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/Phosphor_v1_19.jar;%_lunarmv2%/sodium-0.1.0-SNAPSHOT-all.jar;%_lunarmv2%/Sodium_v1_19.jar;%_lunarmv2%/v1_19-0.1.0-SNAPSHOT-all.jar "-javaagent:%_lunarpath%/agents/CrackedAccount.jar=%_username%" "-javaagent:%_lunarpath%/agents/CustomAutoGG.jar=" "-javaagent:%_lunarpath%/agents/CustomLevelHead.jar=" "-javaagent:%_lunarpath%/agents/HitDelayFix.jar=" "-javaagent:%_lunarpath%/agents/LevelHeadNicks.jar=" "-javaagent:%_lunarpath%/agents/LunarEnable.jar=" "-javaagent:%_lunarpath%/agents/LunarPacksFix.jar=" "-javaagent:%_lunarpath%/agents/NoPinnedServers.jar=" "-javaagent:%_lunarpath%/agents/RemovePlus.jar=" "-javaagent:%_lunarpath%/agents/StaffEnable.jar=" "-javaagent:%_lunarpath%/agents/TeamsAutoGG.jar=" -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=16M -Djava.net.preferIPv4Stack=true"
 
@@ -161,6 +160,6 @@ set "_lunarargs=--version 1.19 --accessToken 0 --assetIndex 1.19 --userPropertie
 powershell -NoP -W minimized ; exit
 title %_title% ^| username: %_username%
 %_lunarpath%\java\bin\java.exe %_jvmargs% com.moonsworth.lunar.genesis.Genesis %_lunarargs% || pause
-rem cls
+cls
 title %_title%
 goto start
