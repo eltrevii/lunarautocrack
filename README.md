@@ -1,3 +1,3 @@
-# infdev branch
-### aka infinite development
-#### this branch will (almost) always be commits ahead of main
+# main branch
+### "stable" (non-rolling) releases
+#### download: `curl -#LO "https://aritz331.github.io/lunarauto/lunarauto.bat"`
