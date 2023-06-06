@@ -4,7 +4,8 @@ setlocal EnableDelayedExpansion
 set "_mc.ver.dot=1.19"
 set "_mc.ver.raw=%mc.ver.dot:.=%"
 set "_mc.ver.und=%mc.ver.dot:.=_%"
-set "_title=LunarAuto Launcher v2.0 ^^| by aritz331_ for Aritz's Utils - an aritz331_ original series"
+set "_title=LunarAuto Launcher v2.0 ^| by aritz331_ for Aritz's Utils - an aritz331_ original series"
+ries"
 
 title %_title%
 
@@ -66,9 +67,7 @@ exit /b
 
 :update.apply
 popd
-pause
 start /min "" cmd /c ping localhost -n 2^>nul ^& move "%_special.331%\dum2.bat" "%~f0" ^& start "" cmd /c "%~f0"
-pause
 exit
 
 :perm.check
