@@ -31,7 +31,7 @@ if not exist %_lunar.path.raw% (md %_lunar.path.raw%)
 call :update.check
 call :perm.check
 
-if not exist %_lunar.path.raw%\java\  (
+if not exist %_lunar.path.raw%\java\ (
 	7z >nul 2>&1 || call :7z.dl
 	call :java.dl
 	call :java.extract
@@ -97,8 +97,8 @@ cls
 exit /b
 
 :lunar.extract
-7z x -y lunar%_mc.ver.raw%.7z -o%_lunar.path.raw%\lunar\
-7z x -y lunaragents.7z -o%_lunar.path.raw%\agents\
+7z x -y lunar%_mc.ver.raw%.7z -o%_lunar.path.raw%\lunar\ || exit /b 1
+7z x -y lunaragents.7z -o%_lunar.path.raw%\agents\ || exit /b 1
 cls
 exit /b
 
