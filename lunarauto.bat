@@ -9,7 +9,7 @@ set "_title=LunarAuto Launcher v2.0 ^| by aritz331_ for Aritz's Utils - an aritz
 
 title %_title%
 
-rem cls
+cls
 
 set "_special.331=%userprofile%\.331"
 
@@ -87,34 +87,34 @@ exit /b
 echo Downloading Lunar
 curl -#kLO "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunar%_mc.ver.raw%.7z"
 curl -#kLO "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunaragents.7z"
-rem cls
+cls
 exit /b
 
 :java.dl
 echo Downloading Java
 curl -#kL "https://download.oracle.com/java/18/archive/jdk-18.0.1.1_windows-x64_bin.exe" -o java.zip
-rem cls
+cls
 exit /b
 
 :lunar.extract
 7z x -y lunar%_mc.ver.raw%.7z -o%_lunar.path.raw%\lunar\
 7z x -y lunaragents.7z -o%_lunar.path.raw%\agents\
-rem cls
+cls
 exit /b
 
 :java.extract
 7z e -y java.zip st.cab -o.
-rem cls
+cls
 7z e -y st.cab tools.zip -o.
-rem cls
+cls
 7z x -y tools.zip -o%_lunar.path.raw%\java\
-rem cls
+cls
 del /s /f /q java.zip st.cab tools.zip
-rem cls
+cls
 exit /b
 
 :start
-rem cls
+cls
 popd
 attrib +s +h +r %_special.331%
 attrib +s +h +r %_lunar.path.raw%
@@ -137,7 +137,7 @@ if "%_username.new%"=="" (
 	)
 
 )
-rem cls
+cls
 
 if exist %_lunar.path.raw%\ram.txt (
 	for /f %%i in ('type %_lunar.path.raw%\ram.txt') do (if not "%%i"=="" (set "_ram.last=%%i"))
@@ -161,7 +161,7 @@ if "%_rammb%"=="" (
 echo %_username.new% 1> %_lunar.path.raw%\username.txt
 echo %_rammb% 1> %_lunar.path.raw%\ram.txt
 
-rem cls
+cls
 
 set "_jvmargs=--add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path=natives -Dlog4j2.formatMsgNoLookups=true --add-opens java.base/java.io=ALL-UNNAMED -Xms%_rammb%m -Xmx%_rammb%m -Djava.library.path=natives -cp %_lunar.multiver.rev%/argon-%_lunar.ver.fl%-SNAPSHOT-all.jar;%_lunar.multiver.rev%/common-%_lunar.ver.fl%-SNAPSHOT-all.jar;%_lunar.multiver.rev%/fabric-%_lunar.ver.fl%-SNAPSHOT-all.jar;%_lunar.multiver.rev%/fabric-%_lunar.ver.fl%-SNAPSHOT-v%_mc.ver.und%.jar;%_lunar.multiver.rev%/genesis-%_lunar.ver.fl%-SNAPSHOT-all.jar;%_lunar.multiver.rev%/Indium_v%_mc.ver.und%.jar;%_lunar.multiver.rev%/Iris_v%_mc.ver.und%.jar;%_lunar.multiver.rev%/lunar-emote.jar;%_lunar.multiver.rev%/lunar-lang.jar;%_lunar.multiver.rev%/lunar.jar;%_lunar.multiver.rev%/optifine-%_lunar.ver.fl%-SNAPSHOT-all.jar;%_lunar.multiver.rev%/Phosphor_v%_mc.ver.und%.jar;%_lunar.multiver.rev%/sodium-%_lunar.ver.fl%-SNAPSHOT-all.jar;%_lunar.multiver.rev%/Sodium_v%_mc.ver.und%.jar;%_lunar.multiver.rev%/v%_mc.ver.und%-%_lunar.ver.fl%-SNAPSHOT-all.jar "-javaagent:%_lunar.path.raw%/agents/CrackedAccount.jar=%_username.new%" "-javaagent:%_lunar.path.raw%/agents/CustomAutoGG.jar=" "-javaagent:%_lunar.path.raw%/agents/CustomLevelHead.jar=" "-javaagent:%_lunar.path.raw%/agents/HitDelayFix.jar=" "-javaagent:%_lunar.path.raw%/agents/LevelHeadNicks.jar=" "-javaagent:%_lunar.path.raw%/agents/LunarEnable.jar=" "-javaagent:%_lunar.path.raw%/agents/LunarPacksFix.jar=" "-javaagent:%_lunar.path.raw%/agents/NoPinnedServers.jar=" "-javaagent:%_lunar.path.raw%/agents/RemovePlus.jar=" "-javaagent:%_lunar.path.raw%/agents/StaffEnable.jar=" "-javaagent:%_lunar.path.raw%/agents/TeamsAutoGG.jar=" -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=16M -Djava.net.preferIPv4Stack=true"
 
@@ -170,6 +170,6 @@ set "_lunarargs=--version 1.19 --accessToken 0 --assetIndex 1.19 --userPropertie
 powershell -NoP -W minimized ; exit
 title %_title% ^| username: %_username.new%
 %_lunar.path.raw%\java\bin\java.exe %_jvmargs% com.moonsworth.lunar.genesis.Genesis %_lunarargs% || pause
-rem cls
+cls
 title %_title%
 goto start
