@@ -16,8 +16,8 @@ set "_special.331=%userprofile%\.331"
 set "_lunar.path.raw=%_special.331%\lunarauto"
 set "_lunar.path.rev=%_lunar.path.raw:\=/%"
 
-set "_lunar.multiver=%_lunar.path.raw%\lunar\offline\multiver"
-set "_lunar.multiver.rev=%_lunar.multiver:\=/%"
+set "_lunar.multiver.raw=%_lunar.path.raw%\lunar\offline\multiver"
+set "_lunar.multiver.rev=%_lunar.multiver.raw:\=/%"
 
 if not exist %_special.331% (md %_special.331%) else (attrib -s -h -r %_special.331%)
 pushd %_special.331%
@@ -37,15 +37,15 @@ if not exist %_lunar.path.raw%\java\  (
 	call :java.extract
 )
 
-if not exist %_lunar.multiver%\v%_mc.ver.und%-*.jar (
+if not exist %_lunar.multiver.raw%\v%_mc.ver.und%-*.jar (
 	7z >nul 2>&1 || call :7z.dl
 	if not exist %_special.331%\lunar.7z (
-		call :lunar.extract | (
+		call :lunar.extract || (
 			call :lunar.dl
 			call :lunar.extract
 		)
 	)
-	call 
+	rem call
 )
 
 call :start
@@ -118,7 +118,7 @@ cls
 popd
 attrib +s +h +r %_special.331%
 attrib +s +h +r %_lunar.path.raw%
-cd /d %_lunar.multiver%
+cd /d %_lunar.multiver.raw%
 
 :username.set
 if exist %_lunar.path.raw%\username.txt (
@@ -167,9 +167,12 @@ set "_jvmargs=--add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.
 
 set "_lunarargs=--version %_mc.ver.dot% --accessToken 0 --assetIndex %_mc.ver.dot% --userProperties {} --gameDir %appdata:\=/%/.minecraftLUNAR%_mc.ver.raw% --launcherVersion 2.12.7 --width 960 --height 480 --workingDirectory . --classpathDir . --ichorClassPath %_lunar.multiver.rev%/argon-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/common-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/fabric-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/fabric-%_lunar.ver.fl%-SNAPSHOT-v%_mc.ver.und%.jar,%_lunar.multiver.rev%/genesis-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/Indium_v%_mc.ver.und%.jar,%_lunar.multiver.rev%/Iris_v%_mc.ver.und%.jar,%_lunar.multiver.rev%/lunar-emote.jar,%_lunar.multiver.rev%/lunar-lang.jar,%_lunar.multiver.rev%/lunar.jar,%_lunar.multiver.rev%/optifine-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/Phosphor_v%_mc.ver.und%.jar,%_lunar.multiver.rev%/sodium-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/Sodium_v%_mc.ver.und%.jar,%_lunar.multiver.rev%/v%_mc.ver.und%-%_lunar.ver.fl%-SNAPSHOT-all.jar --ichorExternalFiles %_lunar.multiver.rev%/OptiFine_v%_mc.ver.und%.jar --texturesDir %_lunar.path.rev%/lunar/textures"
 
-powershell -NoP -W minimized ; exit
+rem powershell -NoP -W minimized ; exit
 title %_title% ^| username: %_username.new%
+echo %_jvmargs%
+echo %_lunarargs%
 %_lunar.path.raw%\java\bin\java.exe %_jvmargs% com.moonsworth.lunar.genesis.Genesis %_lunarargs% || pause
-cls
+pause
+rem cls
 title %_title%
 goto start
