@@ -147,7 +147,7 @@ if exist %_lunar.path.raw%\ram.txt (
 	set "_ram.last.display="
 )
 
-echo Set RAM in MB - 1GB = 1024MB (recommended: 4096)%_ram.last.display%
+echo Set RAM in MB (1GB = 1024MB) - recommended/default: 4096%_ram.last.display%
 set /p "_rammb=> "
 
 if "%_rammb%"=="" (
