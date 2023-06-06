@@ -169,6 +169,7 @@ set "_lunarargs=--version %_mc.ver.dot% --accessToken 0 --assetIndex %_mc.ver.do
 powershell -NoP -W minimized ; exit
 title %_title% ^| username: %_username.new%
 %_lunar.path.raw%\java\bin\java.exe %_jvmargs% com.moonsworth.lunar.genesis.Genesis %_lunarargs% || pause
+
 cls
 title %_title%
 goto start
