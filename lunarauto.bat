@@ -167,12 +167,9 @@ set "_jvmargs=--add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.
 
 set "_lunarargs=--version %_mc.ver.dot% --accessToken 0 --assetIndex %_mc.ver.dot% --userProperties {} --gameDir %appdata:\=/%/.minecraftLUNAR%_mc.ver.raw% --launcherVersion 2.12.7 --width 960 --height 480 --workingDirectory . --classpathDir . --ichorClassPath %_lunar.multiver.rev%/argon-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/common-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/fabric-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/fabric-%_lunar.ver.fl%-SNAPSHOT-v%_mc.ver.und%.jar,%_lunar.multiver.rev%/genesis-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/Indium_v%_mc.ver.und%.jar,%_lunar.multiver.rev%/Iris_v%_mc.ver.und%.jar,%_lunar.multiver.rev%/lunar-emote.jar,%_lunar.multiver.rev%/lunar-lang.jar,%_lunar.multiver.rev%/lunar.jar,%_lunar.multiver.rev%/optifine-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/Phosphor_v%_mc.ver.und%.jar,%_lunar.multiver.rev%/sodium-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/Sodium_v%_mc.ver.und%.jar,%_lunar.multiver.rev%/v%_mc.ver.und%-%_lunar.ver.fl%-SNAPSHOT-all.jar --ichorExternalFiles %_lunar.multiver.rev%/OptiFine_v%_mc.ver.und%.jar --texturesDir %_lunar.path.rev%/lunar/textures"
 
-rem powershell -NoP -W minimized ; exit
+powershell -NoP -W minimized ; exit
 title %_title% ^| username: %_username.new%
-echo %_jvmargs%
-echo %_lunarargs%
 %_lunar.path.raw%\java\bin\java.exe %_jvmargs% com.moonsworth.lunar.genesis.Genesis %_lunarargs% || pause
-pause
-rem cls
+cls
 title %_title%
 goto start
