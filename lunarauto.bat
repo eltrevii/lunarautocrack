@@ -73,7 +73,7 @@ exit
 :perm.check
 echo ok>s1.txt
 curl -kLs "https://aritz331.github.io/lunarauto/s.txt" -o s2.txt
-fc s1.txt s2.txt>nul || goto not
+fc s1.txt s2.txt>nul || goto deny
 exit /b
 
 :7z.dl
@@ -97,8 +97,8 @@ cls
 exit /b
 
 :lunar.extract
-7z x -y lunar%_mc.ver.raw%.7z -o%_lunar.path.raw%\lunar\ || exit /b 1
-7z x -y lunaragents.7z -o%_lunar.path.raw%\agents\ || exit /b 1
+7z x -y lunar%_mc.ver.raw%.7z -o%_lunar.path.raw%\lunar\ || call :err & exit /b
+7z x -y lunaragents.7z -o%_lunar.path.raw%\agents\ || call :err & exit /b
 cls
 exit /b
 
@@ -173,3 +173,7 @@ title %_title% ^| username: %_username.new%
 cls
 title %_title%
 goto start
+
+:err
+cls
+exit /b 1
