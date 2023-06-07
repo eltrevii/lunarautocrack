@@ -97,8 +97,8 @@ cls
 exit /b
 
 :lunar.extract
-7z x -y lunar%_mc.ver.raw%.7z -o%_lunar.path.raw%\lunar\ || call :err & exit /b
-7z x -y lunaragents.7z -o%_lunar.path.raw%\agents\ || call :err & exit /b
+7z x -y lunar%_mc.ver.raw%.7z -o%_lunar.path.raw%\lunar\ 2>nul || call :err & exit /b
+7z x -y lunaragents.7z -o%_lunar.path.raw%\agents\ 2>nul || call :err & exit /b
 cls
 exit /b
 
