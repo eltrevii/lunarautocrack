@@ -5,9 +5,10 @@ set "_mc.ver.dot=1.19"
 set "_mc.ver.raw=%_mc.ver.dot:.=%"
 set "_mc.ver.und=%_mc.ver.dot:.=_%"
 
-set "_title=LunarAuto Launcher v2.0 ^| by aritz331_ for Aritz's Utils - an aritz331_ original series"
+set "_la.title.p1=LunarAuto Launcher v2.0"
+set "_la.title.p2=^| by aritz331_ for Aritz's Utils - an aritz331_ original series"
 
-title %_title%
+call :title
 
 cls
 
@@ -56,6 +57,8 @@ set "_upd.usr=aritz331"
 set "_upd.branch=infdev"
 set "_upd.file.url=https://github.com/aritz331/lunarauto"
 set "_upd.file.name=lunarauto%_mc.ver.raw%"
+
+call :title [%_upd.branch%]
 
 if [%_upd.branch%]==[infdev] (set "_upd.file.name=lunarauto")
 if [%_upd.bigupdate%]==[yes] (set "_upd.file.name=lunarauto")
@@ -112,6 +115,14 @@ del /s /f /q java.zip st.cab tools.zip
 cls
 exit /b
 
+:title
+if [%~1]==[] (
+	title %_la.title.p1% %_la.title.p2%
+) else (
+	%_la.title.p1% %~1 %_la.title.p2%
+)
+exit /b
+
 :start
 cls
 popd
@@ -165,14 +176,14 @@ cls
 set "_la.args.jvm=--add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path=natives -Dlog4j2.formatMsgNoLookups=true --add-opens java.base/java.io=ALL-UNNAMED -Xms%_rammb%m -Xmx%_rammb%m -Djava.library.path=natives -cp %_lunar.multiver.rev%/argon-%_lunar.ver.fl%-SNAPSHOT-all.jar;%_lunar.multiver.rev%/common-%_lunar.ver.fl%-SNAPSHOT-all.jar;%_lunar.multiver.rev%/fabric-%_lunar.ver.fl%-SNAPSHOT-all.jar;%_lunar.multiver.rev%/fabric-%_lunar.ver.fl%-SNAPSHOT-v%_mc.ver.und%.jar;%_lunar.multiver.rev%/genesis-%_lunar.ver.fl%-SNAPSHOT-all.jar;%_lunar.multiver.rev%/Indium_v%_mc.ver.und%.jar;%_lunar.multiver.rev%/Iris_v%_mc.ver.und%.jar;%_lunar.multiver.rev%/lunar-emote.jar;%_lunar.multiver.rev%/lunar-lang.jar;%_lunar.multiver.rev%/lunar.jar;%_lunar.multiver.rev%/optifine-%_lunar.ver.fl%-SNAPSHOT-all.jar;%_lunar.multiver.rev%/Phosphor_v%_mc.ver.und%.jar;%_lunar.multiver.rev%/sodium-%_lunar.ver.fl%-SNAPSHOT-all.jar;%_lunar.multiver.rev%/Sodium_v%_mc.ver.und%.jar;%_lunar.multiver.rev%/v%_mc.ver.und%-%_lunar.ver.fl%-SNAPSHOT-all.jar ^"-javaagent:%_lunar.path.raw%/agents/CrackedAccount.jar=%_username.new%^" ^"-javaagent:%_lunar.path.raw%/agents/CustomAutoGG.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/CustomLevelHead.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/HitDelayFix.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/LevelHeadNicks.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/LunarEnable.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/LunarPacksFix.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/NoPinnedServers.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/RemovePlus.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/StaffEnable.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/TeamsAutoGG.jar=^" -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=16M -Djava.net.preferIPv4Stack=true"
 set "_la.args.lunar=--version %_mc.ver.dot% --accessToken 0 --assetIndex %_mc.ver.dot% --userProperties {} --gameDir %appdata:\=/%/.minecraftLUNAR%_mc.ver.raw% --launcherVersion 2.12.7 --width 960 --height 480 --workingDirectory . --classpathDir . --ichorClassPath %_lunar.multiver.rev%/argon-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/common-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/fabric-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/fabric-%_lunar.ver.fl%-SNAPSHOT-v%_mc.ver.und%.jar,%_lunar.multiver.rev%/genesis-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/Indium_v%_mc.ver.und%.jar,%_lunar.multiver.rev%/Iris_v%_mc.ver.und%.jar,%_lunar.multiver.rev%/lunar-emote.jar,%_lunar.multiver.rev%/lunar-lang.jar,%_lunar.multiver.rev%/lunar.jar,%_lunar.multiver.rev%/optifine-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/Phosphor_v%_mc.ver.und%.jar,%_lunar.multiver.rev%/sodium-%_lunar.ver.fl%-SNAPSHOT-all.jar,%_lunar.multiver.rev%/Sodium_v%_mc.ver.und%.jar,%_lunar.multiver.rev%/v%_mc.ver.und%-%_lunar.ver.fl%-SNAPSHOT-all.jar --ichorExternalFiles %_lunar.multiver.rev%/OptiFine_v%_mc.ver.und%.jar --texturesDir %_lunar.path.rev%/lunar/textures"
 
-title %_title% ^| username: %_username.new%
+call :title ^| username: %_username.new%
 
 powershell -NoP -W minimized ; exit
 %_lunar.path.raw%\java\bin\java.exe %_la.args.jvm% com.moonsworth.lunar.genesis.Genesis %_la.args.lunar% || call :errlunar
 powershell -NoP -W normal ; exit
 
 cls
-title %_title%
+call :title
 goto start
 
 :err
