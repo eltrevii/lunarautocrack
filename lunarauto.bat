@@ -18,6 +18,7 @@ set "_lunar.path.rev=%_lunar.path.raw:\=/%"
 
 set "_lunar.multiver.raw=%_lunar.path.raw%\lunar\offline\multiver"
 set "_lunar.multiver.rev=%_lunar.multiver.raw:\=/%"
+set "_lunar.multiver.fl=0.1.0"
 
 if not exist %_special.331% (md %_special.331%) else (attrib -s -h -r %_special.331%)
 pushd %_special.331%
