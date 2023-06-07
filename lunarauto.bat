@@ -40,12 +40,9 @@ if not exist %_lunar.path.raw%\java\ (
 if not exist %_lunar.multiver.raw%\v%_mc.ver.und%-*.jar (
 	7z >nul 2>&1 || call :7z.dl
 	if not exist %_special.331%\lunar.7z (
-		call :lunar.extract || (
-			call :lunar.dl
-			call :lunar.extract
-		)
+		call :lunar.dl
 	)
-	rem call
+	call :lunar.extract
 )
 
 call :start
