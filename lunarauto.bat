@@ -119,7 +119,7 @@ exit /b
 if [%~1]==[] (
 	title %_la.title.p1% %_la.title.p2%
 ) else (
-	%_la.title.p1% %~1 %_la.title.p2%
+	title %_la.title.p1% %~1 %_la.title.p2%
 )
 exit /b
 
