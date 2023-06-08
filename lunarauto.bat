@@ -125,14 +125,14 @@ if [%_upd.branch%]==[] (
 exit /b
 
 :title.set.other
-if [%~1]==[] ( rem no %1
-	if [%~2]==[] ( rem no %1, no %2
+if "%~1"=="" ( rem no %1
+	if "%~2"=="" ( rem no %1, no %2
 		
 	) else ( rem %2
 		call :title.set.custom "%_la.title.p1% %_la.title.p2% %~2"
 	)
 ) else ( rem %1
-	if [%~2]==[] ( rem no %2
+	if "%~2"=="" ( rem no %2
 		call :title.set.custom "%_la.title.p1% %~1 %_la.title.p2%"
 	) else ( rem %1, %2
 		call :title.set.custom "%_la.title.p1% %~1 %_la.title.p2% %~2"
