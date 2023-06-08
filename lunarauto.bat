@@ -137,7 +137,6 @@ if [%~1]==[] ( rem no %1
 		call :title.set.custom "%_la.title.p1% %~1 %_la.title.p2% %~2"
 	)
 )
-pause
 exit /b
 
 :title.set.custom
