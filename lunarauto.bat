@@ -122,6 +122,7 @@ if [%_upd.branch%]==[] (
 ) else (
 	call :title.set.branch
 )
+exit /b
 
 :title.set.other
 if [%~1]==[] ( rem no %1
