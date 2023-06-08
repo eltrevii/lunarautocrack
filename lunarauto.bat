@@ -124,17 +124,21 @@ if [%_upd.branch%]==[] (
 )
 
 :title.set.other
-if [%~1]==[] ( rem no %1
-	if [%~2]==[] ( rem no %1, no %2
+set "_la.sub.arg.1=%~1"
+set "_la.sub.arg.1=%_la.sub.arg.1:^^=^%"
+set "_la.sub.arg.2=%~2"
+set "_la.sub.arg.2=%_la.sub.arg.2:^^=^%"
+if [%_la.sub.arg.1%]==[] ( rem no %1
+	if [%_la.sub.arg.2%]==[] ( rem no %1, no %2
 		
 	) else ( rem %2
-		call :title.set.custom "%_la.title.p1% %_la.title.p2% %~2"
+		call :title.set.custom "%_la.title.p1% %_la.title.p2% %_la.sub.arg.2%"
 	)
 ) else ( rem %1
-	if [%~2]==[] ( rem no %2
-		call :title.set.custom "%_la.title.p1% %~1 %_la.title.p2%"
+	if [%_la.sub.arg.2%]==[] ( rem no %2
+		call :title.set.custom "%_la.title.p1% %_la.sub.arg.1% %_la.title.p2%"
 	) else ( rem %1, %2
-		call :title.set.custom "%_la.title.p1% %~1 %_la.title.p2% %~2"
+		call :title.set.custom "%_la.title.p1% %_la.sub.arg.1% %_la.title.p2% %_la.sub.arg.2%"
 	)
 )
 exit /b
