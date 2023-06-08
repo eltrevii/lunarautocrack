@@ -219,6 +219,5 @@ exit /b 1
 
 :errlunar
 powershell -NoP -W normal ; exit
-cls
 pause
 exit /b
