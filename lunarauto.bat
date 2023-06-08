@@ -144,8 +144,8 @@ if [%_la.sub.arg.1%]==[] ( rem no %1
 exit /b
 
 :title.set.custom
-set "_la.sub.arg=%~1"
-title %_la.sub.arg:^^=^%
+set "_la.sub.arg.1=%~1"
+title %_la.sub.arg.1:^^=^%
 exit /b
 
 :title.set.branch
