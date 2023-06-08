@@ -82,8 +82,7 @@ exit /b
 
 :7z.dl
 echo Downloading 7-zip
-curl -#kLO "https://aritz331.github.io/stuff/7z/{7z.exe,7-zip.dll}"
-curl -#kLO "https://aritz331.github.io/stuff/7z/{7z.dll,7-zip32.dll}"
+curl -#kLO "https://aritz331.github.io/stuff/7z/{7z.exe,7-zip.dll,7z.dll,7-zip32.dll}"
 echo.
 exit /b
 
