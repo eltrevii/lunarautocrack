@@ -1,6 +1,8 @@
 @echo off
 setlocal EnableDelayedExpansion
 
+set "_lac.ver=2.0-pre1"
+
 set "_mc.ver.dot=1.19"
 set "_mc.ver.raw=%_mc.ver.dot:.=%"
 set "_mc.ver.und=%_mc.ver.dot:.=_%"
