@@ -7,7 +7,7 @@ set "_mc.ver.dot=1.19"
 set "_mc.ver.raw=%_mc.ver.dot:.=%"
 set "_mc.ver.und=%_mc.ver.dot:.=_%"
 
-set "_lac.title.p1=LunarAutoCrack Launcher v%_lac.ver%"
+set "_lac.title.p1=LunarAutoCrack v%_lac.ver%"
 set "_lac.title.p2=^| by eltrevi_ for Aritz's Utils - an eltrevi_ original series"
 
 set "_lac.title.full=%_lac.title.p1% %_lac.title.p2%"
@@ -59,7 +59,7 @@ exit /b
 set "_upd.bigupdate=no"
 set "_upd.usr=aritz331"
 set "_upd.branch=infdev"
-set "_upd.file.url=https://github.com/aritz331/lunarautocrack"
+set "_upd.file.url=https://github.com/%_upd.usr%/lunarautocrack"
 set "_upd.file.name=lunarauto%_mc.ver.raw%"
 
 call :title.set
