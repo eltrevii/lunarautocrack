@@ -217,7 +217,15 @@ if "%_lac.err%"=="1" (pause)
 cls
 call :title.set.branch
 goto start
+exit /b
 
 :err
 cls
 exit /b 1
+
+rem kinda shit, but will improve later
+:deny
+echo You are not allowed to use LunarAutoCrack at the moment. Please try again in a few hours.
+echo No puede usar LunarAutoCrack en estos momentos. Por favor, inténtelo de nuevo en unas horas.
+pause
+exit /b
