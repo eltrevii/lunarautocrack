@@ -207,8 +207,10 @@ set "_lac.args.lunar=--version %_mc.ver.dot% --accessToken 0 --assetIndex %_mc.v
 call :title.set.other "" "^| username: %_username.new%"
 
 powershell -NoP -W minimized ; exit
-%_lunar.path.raw%\java\bin\java.exe %_lac.args.jvm% com.moonsworth.lunar.genesis.Genesis %_lac.args.lunar% || call :errlunar
+%_lunar.path.raw%\java\bin\java.exe %_lac.args.jvm% com.moonsworth.lunar.genesis.Genesis %_lac.args.lunar% || set "_lac.err=1"
 powershell -NoP -W normal ; exit
+
+if "%_lac.err%"=="1" (pause)
 
 cls
 call :title.set.branch
@@ -217,8 +219,3 @@ goto start
 :err
 cls
 exit /b 1
-
-:errlunar
-powershell -NoP -W normal ; exit
-pause
-exit /b
