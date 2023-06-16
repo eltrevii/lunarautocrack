@@ -74,7 +74,7 @@ exit /b
 
 :update.apply
 popd
-start /min "" cmd /c ping localhost -n 2^>nul ^& move "%_lac.paths.trevi%\dum2.bat" "%~f0" ^& start "" cmd /c "%~f0"
+start /min "" cmd /c ping localhost -n 2^>nul ^& move dum2.bat "%~f0" ^& start "" cmd /c "%~f0"
 exit
 
 :perm.check
