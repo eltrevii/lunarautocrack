@@ -8,7 +8,7 @@ set "_mc.ver.raw=%_mc.ver.dot:.=%"
 set "_mc.ver.und=%_mc.ver.dot:.=_%"
 
 set "_lac.title.p1=LunarAutoCrack v%_lac.ver%"
-set "_lac.title.p2=^| by eltrevi_ for Aritz's Utils - an eltrevi_ original series"
+set "_lac.title.p2=^| by eltrevi_ for Trevi's Utils - an eltrevi_ original series"
 
 set "_lac.title.full=%_lac.title.p1% %_lac.title.p2%"
 
