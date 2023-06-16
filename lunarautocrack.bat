@@ -68,6 +68,7 @@ call :title.set
 echo Checking for updates...
 curl -#kL "%_upd.gh.url%/raw/%_upd.gh.branch%/%_upd.file.name%.bat" -o dum2.bat || exit /b
 fc "%~f0" "dum2.bat">nul || (goto update.apply)
+cls
 exit /b
 
 :update.apply
