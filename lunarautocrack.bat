@@ -16,9 +16,9 @@ call :title.set
 
 cls
 
-set "_lac.331=%userprofile%\.331"
+set "_lac.paths.trevi=%userprofile%\.trevi"
 
-set "_lunar.path.raw=%_lac.331%\lac"
+set "_lunar.path.raw=%_lac.paths.trevi%\lac"
 set "_lunar.path.rev=%_lunar.path.raw:\=/%"
 
 set "_lunar.multiver.raw=%_lunar.path.raw%\lunar\offline\multiver"
@@ -26,13 +26,13 @@ set "_lunar.multiver.rev=%_lunar.multiver.raw:\=/%"
 
 set "_lunar.ver.fl=0.1.0"
 
-if not exist %_lac.331% (md %_lac.331%) else (attrib -s -h -r %_lac.331%)
-pushd %_lac.331%
+if not exist %_lac.paths.trevi% (md %_lac.paths.trevi%) else (attrib -s -h -r %_lac.paths.trevi%)
+pushd %_lac.paths.trevi%
 
-attrib -s -h -r %_lac.331% >nul 2>&1
+attrib -s -h -r %_lac.paths.trevi% >nul 2>&1
 attrib -s -h -r %_lunar.path.raw% >nul 2>&1
 
-if not exist %_lac.331% (md %_lac.331%)
+if not exist %_lac.paths.trevi% (md %_lac.paths.trevi%)
 if not exist %_lunar.path.raw% (md %_lunar.path.raw%)
 
 call :update.check
@@ -46,7 +46,7 @@ if not exist %_lunar.path.raw%\java\ (
 
 if not exist %_lunar.multiver.raw%\v%_mc.ver.und%-*.jar (
 	7z >nul 2>&1 || call :7z.dl
-	if not exist %_lac.331%\lunar.7z (
+	if not exist %_lac.paths.trevi%\lunar.7z (
 		call :lunar.dl
 	)
 	call :lunar.extract
@@ -56,29 +56,28 @@ call :start
 exit /b
 
 :update.check
-set "_upd.bigupdate=no"
-set "_upd.usr=aritz331"
-set "_upd.branch=infdev"
-set "_upd.file.url=https://github.com/%_upd.usr%/lunarautocrack"
-set "_upd.file.name=lunarauto%_mc.ver.raw%"
+set "_upd.bigupdate=yes"
+set "_upd.gh.usr=aritz331"
+set "_upd.gh.repo=lunarautocrack"
+set "_upd.gh.branch=infdev"
+set "_upd.gh.url=https://github.com/%_upd.gh.usr%/%_upd.gh.repo%"
+set "_upd.file.name=lunarautocrack"
 
 call :title.set
 
-if [%_upd.branch%]==[infdev] (set "_upd.file.name=lunarautocrack")
-if [%_upd.bigupdate%]==[yes] (set "_upd.file.name=lunarautocrack")
-
-curl -kLs "%_upd.file.url%/raw/%_upd.branch%/%_upd.file.name%.bat" -o dum2.bat || exit /b
+echo Checking for updates...
+curl -#kL "%_upd.gh.url%/raw/%_upd.gh.branch%/%_upd.file.name%.bat" -o dum2.bat || exit /b
 fc "%~f0" "dum2.bat">nul || (goto update.apply)
 exit /b
 
 :update.apply
 popd
-start /min "" cmd /c ping localhost -n 2^>nul ^& move "%_lac.331%\dum2.bat" "%~f0" ^& start "" cmd /c "%~f0"
+start /min "" cmd /c ping localhost -n 2^>nul ^& move "%_lac.paths.trevi%\dum2.bat" "%~f0" ^& start "" cmd /c "%~f0"
 exit
 
 :perm.check
 echo ok>s1.txt
-curl -kLs "https://aritz331.github.io/lunarautocrack/s.txt" -o s2.txt
+curl -kLs "https://aritz331.github.io/%_upd.gh.repo%/s.txt" -o s2.txt
 fc s1.txt s2.txt>nul || goto deny
 exit /b
 
@@ -119,7 +118,7 @@ cls
 exit /b
 
 :title.set
-if [%_upd.branch%]==[] (
+if [%_upd.gh.branch%]==[] (
 	call :title.set.custom "%_lac.title.full%"
 ) else (
 	call :title.set.branch
@@ -149,13 +148,13 @@ title %_lac.sub.arg:^^=^%
 exit /b
 
 :title.set.branch
-call :title.set.other "[%_upd.branch%]"
+call :title.set.other "[%_upd.gh.branch%]"
 exit /b
 
 :start
 cls
 popd
-attrib +s +h +r %_lac.331%
+attrib +s +h +r %_lac.paths.trevi%
 attrib +s +h +r %_lunar.path.raw%
 cd /d %_lunar.multiver.raw%
 
