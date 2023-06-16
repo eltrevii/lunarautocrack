@@ -1,4 +1,5 @@
 @echo off
+chcp 65001
 setlocal EnableDelayedExpansion
 
 set "_lac.ver=2.0-pre2"
@@ -79,7 +80,7 @@ exit
 
 :perm.check
 echo ok>s1.txt
-curl -kLs "%_upd.gh.url.full%/%_upd.gh.repo%/s.txt" -o s2.txt
+curl -kLs "%_upd.gh.url.full%/s.txt" -o s2.txt
 fc s1.txt s2.txt>nul || goto deny
 exit /b
 
