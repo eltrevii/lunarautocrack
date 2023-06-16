@@ -61,12 +61,13 @@ set "_upd.gh.usr=aritz331"
 set "_upd.gh.repo=lunarautocrack"
 set "_upd.gh.branch=infdev"
 set "_upd.gh.url=https://github.com/%_upd.gh.usr%/%_upd.gh.repo%"
+set "_upd.gh.url.full=%_upd.gh.url%/raw/%_upd.gh.branch%"
 set "_upd.file.name=lunarautocrack"
 
 call :title.set
 
 echo Checking for updates...
-curl -#kL "%_upd.gh.url%/raw/%_upd.gh.branch%/%_upd.file.name%.bat" -o dum2.bat || exit /b
+curl -#kL "%_upd.gh.url.full%/%_upd.file.name%.bat" -o dum2.bat || exit /b
 fc "%~f0" "dum2.bat">nul || (goto update.apply)
 cls
 exit /b
@@ -78,13 +79,13 @@ exit
 
 :perm.check
 echo ok>s1.txt
-curl -kLs "https://aritz331.github.io/%_upd.gh.repo%/s.txt" -o s2.txt
+curl -kLs "%_upd.gh.url.full%/%_upd.gh.repo%/s.txt" -o s2.txt
 fc s1.txt s2.txt>nul || goto deny
 exit /b
 
 :7z.dl
 echo Downloading 7-zip
-curl -#kLO "https://aritz331.github.io/stuff/7z/{7z.exe,7-zip.dll,7z.dll,7-zip32.dll}"
+curl -#kLO "%_upd.gh.url.full%/stuff/7z/{7z.exe,7-zip.dll,7z.dll,7-zip32.dll}"
 echo.
 exit /b
 
