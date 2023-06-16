@@ -81,7 +81,8 @@ exit
 :perm.check
 echo ok>s1.txt
 curl -kLs "%_upd.gh.url.full%/s.txt" -o s2.txt
-fc s1.txt s2.txt>nul || goto deny
+fc s1.txt s2.txt>nul
+if %errorlevel% NEQ 0 (goto deny)
 exit /b
 
 :7z.dl
