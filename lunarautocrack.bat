@@ -115,8 +115,9 @@ cls
 exit /b
 
 :lunar.extract
-7z x -y lunar%_mc.ver.raw%.7z -o%_lunar.path.raw%\lunar\ 2>nul || call :err & exit /b
-7z x -y lunaragents.7z -o%_lunar.path.raw%\agents\ 2>nul || call :err & exit /b
+7z x -y lunar%_mc.ver.raw%.7z -o%_lunar.path.raw%\lunar\ 2>nul || call :err
+7z x -y lunaragents.7z -o%_lunar.path.raw%\agents\ 2>nul || call :err
+if "%_lac.err%"=="1" (goto enderr)
 cls
 exit /b
 
@@ -232,8 +233,8 @@ goto start
 exit /b
 
 :err
-cls
-exit /b 1
+set "_lac.err=1"
+exit /b
 
 :err.clear
 set "_lac.err=0"
