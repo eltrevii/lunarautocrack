@@ -43,6 +43,10 @@ if "%_lac.err%"=="1" (
 	goto deny
 )
 
+if "%_lac.deny%"=="1" (
+	exit /b
+)
+
 if not exist %_lunar.path.raw%\java\ (
 	7z >nul 2>&1 || call :7z.dl
 	call :java.dl
@@ -242,5 +246,6 @@ echo You are not allowed to use LunarAutoCrack at the moment. Please try again i
 chcp 65001 >nul
 echo No puede usar LunarAutoCrack en estos momentos. Por favor, inténtelo de nuevo en unas horas.
 chcp 437 >nul
+set "_lac.deny=1"
 pause
-exit
+exit /b
