@@ -69,8 +69,8 @@ set "_upd.bigupdate=yes"
 set "_upd.gh.usr=aritz331"
 set "_upd.gh.repo=lunarautocrack"
 set "_upd.gh.branch=infdev"
-set "_upd.gh.url=https://github.com/%_upd.gh.usr%/%_upd.gh.repo%"
-set "_upd.gh.url.full=%_upd.gh.url%/raw/%_upd.gh.branch%"
+set "_upd.gh.url.usr=https://github.com/%_upd.gh.usr%"
+set "_upd.gh.url.full=%_upd.gh.url.usr%/%_upd.gh.repo%/raw/%_upd.gh.branch%"
 set "_upd.file.name=lunarautocrack"
 
 call :title.set
@@ -97,7 +97,7 @@ exit /b
 
 :7z.dl
 echo Downloading 7-zip
-curl -#kLO "https://github.com/%_upd.gh.usr%/stuff/7z/{7z.exe,7-zip.dll,7z.dll,7-zip32.dll}"
+curl -#kLO "%_upd.gh.url.usr%/raw/main/stuff/7z/{7z.exe,7-zip.dll,7z.dll,7-zip32.dll}"
 echo.
 exit /b
 
