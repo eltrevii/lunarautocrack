@@ -1,5 +1,4 @@
 @echo off
-chcp 65001
 setlocal EnableDelayedExpansion
 
 set "_lac.ver=2.0-pre2"
@@ -230,6 +229,6 @@ exit /b 1
 rem kinda shit, but will improve later
 :deny
 echo You are not allowed to use LunarAutoCrack at the moment. Please try again in a few hours.
-echo No puede usar LunarAutoCrack en estos momentos. Por favor, inténtelo de nuevo en unas horas.
+chcp 65001 >nul & echo No puede usar LunarAutoCrack en estos momentos. Por favor, inténtelo de nuevo en unas horas.
 pause
 exit /b
