@@ -38,6 +38,11 @@ if not exist %_lunar.path.raw% (md %_lunar.path.raw%)
 call :update.check
 call :perm.check
 
+if "%_lac.err%"=="1" (
+	call :err.clear
+	goto deny
+)
+
 if not exist %_lunar.path.raw%\java\ (
 	7z >nul 2>&1 || call :7z.dl
 	call :java.dl
@@ -83,7 +88,7 @@ exit
 echo ok>s1.txt
 curl -kLs "%_upd.gh.url.full%/s.txt" -o s2.txt || goto deny
 fc s1.txt s2.txt>nul
-if %errorlevel% NEQ 0 (goto deny)
+set "_lac.err=%errorlevel%"
 exit /b
 
 :7z.dl
@@ -215,7 +220,7 @@ powershell -NoP -W minimized ; exit
 %_lunar.path.raw%\java\bin\java.exe %_lac.args.jvm% com.moonsworth.lunar.genesis.Genesis %_lac.args.lunar% || set "_lac.err=1"
 powershell -NoP -W normal ; exit
 
-if "%_lac.err%"=="1" (pause)
+if "%_lac.err%"=="1" (pause & call :err.clear)
 
 cls
 call :title.set.branch
@@ -226,10 +231,14 @@ exit /b
 cls
 exit /b 1
 
+:err.clear
+set "_lac.err=0"
+exit /b
+
 rem kinda shit, but will improve later
 :deny
 cls
 echo You are not allowed to use LunarAutoCrack at the moment. Please try again in a few hours.
 chcp 65001 >nul & echo No puede usar LunarAutoCrack en estos momentos. Por favor, inténtelo de nuevo en unas horas.
 pause
-exit /b
+exit
