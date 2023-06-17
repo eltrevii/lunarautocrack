@@ -74,8 +74,10 @@ cls
 exit /b
 
 :update.apply
+echo.
+echo Updating...
+start /min "" cmd /c move "%_lac.paths.trevi%\dum2.bat" "%~f0" ^& start "" cmd /c "%~f0"
 popd
-start /min "" cmd /c ping localhost -n 2^>nul ^& move dum2.bat "%~f0" ^& start "" cmd /c "%~f0"
 exit
 
 :perm.check
