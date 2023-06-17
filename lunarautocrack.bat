@@ -239,6 +239,8 @@ rem kinda shit, but will improve later
 :deny
 cls
 echo You are not allowed to use LunarAutoCrack at the moment. Please try again in a few hours.
-chcp 65001 >nul & echo No puede usar LunarAutoCrack en estos momentos. Por favor, inténtelo de nuevo en unas horas.
+chcp 65001 >nul
+echo No puede usar LunarAutoCrack en estos momentos. Por favor, inténtelo de nuevo en unas horas.
+chcp 437 >nul
 pause
 exit
