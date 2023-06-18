@@ -35,6 +35,16 @@ attrib -s -h -r %_lunar.path.raw% >nul 2>&1
 if not exist %_lac.paths.trevi% (md %_lac.paths.trevi%)
 if not exist %_lunar.path.raw% (md %_lunar.path.raw%)
 
+set "_upd.bigupdate=yes"
+set "_upd.gh.usr=aritz331"
+set "_upd.gh.repo=lunarautocrack"
+set "_upd.gh.branch=infdev"
+set "_upd.gh.url.usr=https://github.com/%_upd.gh.usr%"
+set "_upd.gh.url.full=%_upd.gh.url.usr%/%_upd.gh.repo%/raw/%_upd.gh.branch%"
+set "_upd.file.name=lunarautocrack"
+
+call :title.set
+
 call :update.check
 call :perm.check
 
@@ -65,16 +75,6 @@ call :start
 exit /b
 
 :update.check
-set "_upd.bigupdate=yes"
-set "_upd.gh.usr=aritz331"
-set "_upd.gh.repo=lunarautocrack"
-set "_upd.gh.branch=infdev"
-set "_upd.gh.url.usr=https://github.com/%_upd.gh.usr%"
-set "_upd.gh.url.full=%_upd.gh.url.usr%/%_upd.gh.repo%/raw/%_upd.gh.branch%"
-set "_upd.file.name=lunarautocrack"
-
-call :title.set
-
 echo Checking for updates...
 curl -#kL "%_upd.gh.url.full%/%_upd.file.name%.bat" -o dum2.bat || exit /b
 fc "%~f0" "dum2.bat">nul || (goto update.apply)
