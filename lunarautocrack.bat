@@ -168,6 +168,7 @@ attrib +s +h +r %_lunar.path.raw%
 cd /d %_lunar.multiver.raw%
 
 :username.set
+cls
 if exist %_lunar.path.raw%\username.txt (
 	for /f %%i in ('type %_lunar.path.raw%\username.txt') do (if not "%%i"=="" (set "_username.last=%%i"))
 	set "_username.last.display= [!_username.last!]"
