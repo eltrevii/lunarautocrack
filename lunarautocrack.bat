@@ -9,22 +9,24 @@ set "_mc.ver.und=%_mc.ver.dot:.=_%"
 
 set "_lac.title.p1=LunarAutoCrack v%_lac.ver%"
 set "_lac.title.p2=^| by eltrevi_ for Trevi's Utils - an eltrevi_ original series"
-
 set "_lac.title.full=%_lac.title.p1% %_lac.title.p2%"
-
-call :title.set
-
-cls
-
 set "_lac.paths.trevi=%userprofile%\.trevi"
 
 set "_lunar.path.raw=%_lac.paths.trevi%\lac"
 set "_lunar.path.rev=%_lunar.path.raw:\=/%"
-
 set "_lunar.multiver.raw=%_lunar.path.raw%\lunar\offline\multiver"
 set "_lunar.multiver.rev=%_lunar.multiver.raw:\=/%"
-
 set "_lunar.ver.fl=0.1.0"
+
+set "_upd.bigupdate=yes"
+set "_upd.gh.usr=aritz331"
+set "_upd.gh.repo=lunarautocrack"
+set "_upd.gh.branch=infdev"
+set "_upd.gh.url.usr=https://github.com/%_upd.gh.usr%"
+set "_upd.gh.url.full=%_upd.gh.url.usr%/%_upd.gh.repo%/raw/%_upd.gh.branch%"
+set "_upd.file.name=lunarautocrack"
+
+call :title.set
 
 if not exist %_lac.paths.trevi% (md %_lac.paths.trevi%) else (attrib -s -h -r %_lac.paths.trevi%)
 pushd %_lac.paths.trevi%
@@ -34,14 +36,6 @@ attrib -s -h -r %_lunar.path.raw% >nul 2>&1
 
 if not exist %_lac.paths.trevi% (md %_lac.paths.trevi%)
 if not exist %_lunar.path.raw% (md %_lunar.path.raw%)
-
-set "_upd.bigupdate=yes"
-set "_upd.gh.usr=aritz331"
-set "_upd.gh.repo=lunarautocrack"
-set "_upd.gh.branch=infdev"
-set "_upd.gh.url.usr=https://github.com/%_upd.gh.usr%"
-set "_upd.gh.url.full=%_upd.gh.url.usr%/%_upd.gh.repo%/raw/%_upd.gh.branch%"
-set "_upd.file.name=lunarautocrack"
 
 call :title.set
 
