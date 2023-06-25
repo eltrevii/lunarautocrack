@@ -24,7 +24,7 @@ set "_upd.gh.repo=lunarautocrack"
 set "_upd.gh.branch=infdev"
 set "_upd.gh.url.usr=https://github.com/%_upd.gh.usr%"
 set "_upd.gh.url.repo=%_upd.gh.url.usr%/%_upd.gh.repo%"
-set "_upd.gh.url.full=%_ipd.gh.url.repo%/raw/%_upd.gh.branch%"
+set "_upd.gh.url.full=%_upd.gh.url.repo%/raw/%_upd.gh.branch%"
 set "_upd.file.name=lunarautocrack"
 
 call :title.set
