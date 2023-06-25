@@ -23,7 +23,8 @@ set "_upd.gh.usr=aritz331"
 set "_upd.gh.repo=lunarautocrack"
 set "_upd.gh.branch=infdev"
 set "_upd.gh.url.usr=https://github.com/%_upd.gh.usr%"
-set "_upd.gh.url.full=%_upd.gh.url.usr%/%_upd.gh.repo%/raw/%_upd.gh.branch%"
+set "_upd.gh.url.repo=%_upd.gh.url.usr%/%_upd.gh.repo%"
+set "_upd.gh.url.full=%_ipd.gh.url.repo%/raw/%_upd.gh.branch%"
 set "_upd.file.name=lunarautocrack"
 
 call :title.set
@@ -104,7 +105,7 @@ exit /b
 
 :java.dl
 echo Downloading Java
-curl -#kL "https://download.oracle.com/java/18/archive/jdk-18.0.1.1_windows-x64_bin.exe" -o java.zip
+curl -#kL "%_upd.gh.url.repo%/raw/jre/jdk-20-jre.7z" -o java.zip
 cls
 exit /b
 
@@ -116,15 +117,7 @@ cls
 exit /b
 
 :java.extract
-7z e -y java.zip st.cab -o.
-cls
-7z e -y st.cab tools.zip -o.
-cls
-7z x -y tools.zip -o%_lunar.path.raw%\java\
-cls
-del /s /f /q java.zip st.cab tools.zip
-cls
-exit /b
+7z x -y jre.7z -o%_lunar.path.raw%\java\
 
 :title.set
 if [%_upd.gh.branch%]==[] (
