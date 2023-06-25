@@ -28,14 +28,14 @@ set "_upd.file.name=lunarautocrack"
 
 call :title.set
 
-if not exist %_lac.paths.trevi% (md %_lac.paths.trevi%) else (attrib -s -h -r %_lac.paths.trevi%)
-pushd %_lac.paths.trevi%
+if not exist "%_lac.paths.trevi%" (md "%_lac.paths.trevi%") else (attrib -s -h -r "%_lac.paths.trevi%")
+pushd "%_lac.paths.trevi%"
 
-attrib -s -h -r %_lac.paths.trevi% >nul 2>&1
-attrib -s -h -r %_lunar.path.raw% >nul 2>&1
+attrib -s -h -r "%_lac.paths.trevi%" >nul 2>&1
+attrib -s -h -r "%_lunar.path.raw%" >nul 2>&1
 
-if not exist %_lac.paths.trevi% (md %_lac.paths.trevi%)
-if not exist %_lunar.path.raw% (md %_lunar.path.raw%)
+if not exist "%_lac.paths.trevi%" (md "%_lac.paths.trevi%")
+if not exist "%_lunar.path.raw%" (md "%_lunar.path.raw%")
 
 call :title.set
 
@@ -51,15 +51,15 @@ if "%_lac.deny%"=="1" (
 	exit /b
 )
 
-if not exist %_lunar.path.raw%\java\ (
+if not exist "%_lunar.path.raw%\java\" (
 	7z >nul 2>&1 || call :7z.dl
 	call :java.dl
 	call :java.extract
 )
 
-if not exist %_lunar.multiver.raw%\v%_mc.ver.und%-*.jar (
+if not exist "%_lunar.multiver.raw%\v%_mc.ver.und%-*.jar" (
 	7z >nul 2>&1 || call :7z.dl
-	if not exist %_lac.paths.trevi%\lunar.7z (
+	if not exist "%_lac.paths.trevi%\lunar.7z" (
 		call :lunar.dl
 	)
 	call :lunar.extract
@@ -91,7 +91,7 @@ exit /b
 
 :7z.dl
 echo Downloading 7-zip
-curl -#kLO "%_upd.gh.url.usr%/raw/main/stuff/7z/{7z.exe,7-zip.dll,7z.dll,7-zip32.dll}"
+curl -#kLO "%_upd.gh.url.usr%/stuff/raw/main/7z/{7z.exe,7-zip.dll,7z.dll,7-zip32.dll}"
 echo.
 exit /b
 
