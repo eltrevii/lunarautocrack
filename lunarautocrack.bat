@@ -105,7 +105,7 @@ exit /b
 
 :java.dl
 echo Downloading Java
-curl -#kL "%_upd.gh.url.repo%/raw/jre/jdk-20-jre.7z" -o java.zip
+curl -#kLO "%_upd.gh.url.repo%/raw/jre/jdk-20-jre.7z"
 cls
 exit /b
 
