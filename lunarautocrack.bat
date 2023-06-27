@@ -52,14 +52,18 @@ if "%_lac.deny%"=="1" (
 	exit /b
 )
 
-if not exist "%_lunar.path.raw%\java\" (
+if not exist "%_lac.paths.trevi%" (
+	call :7z.dl
+) else (
 	7z >nul 2>&1 || call :7z.dl
+)
+
+if not exist "%_lunar.path.raw%\java\" (
 	call :java.dl
 	call :java.extract
 )
 
 if not exist "%_lunar.multiver.raw%\v%_mc.ver.und%-*.jar" (
-	7z >nul 2>&1 || call :7z.dl
 	if not exist "%_lac.paths.trevi%\lunar.7z" (
 		call :lunar.dl
 	)
