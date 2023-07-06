@@ -145,7 +145,7 @@ exit /b
 :title.set.other
 if "%~1"=="" ( rem no %1
 	if "%~2"=="" ( rem no %1, no %2
-		
+		rem nothing
 	) else ( rem %2
 		call :title.set.custom "%_lac.title.p1% %_lac.title.p2% %~2"
 	)
