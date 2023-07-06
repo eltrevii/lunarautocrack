@@ -19,7 +19,7 @@ set "_lunar.multiver.rev=%_lunar.multiver.raw:\=/%"
 set "_lunar.ver.fl=0.1.0"
 
 set "_upd.bigupdate=yes"
-set "_upd.gh.usr=aritz331"
+set "_upd.gh.usr=eltrevii"
 set "_upd.gh.repo=lunarautocrack"
 set "_upd.gh.branch=infdev"
 set "_upd.gh.url.usr=https://github.com/%_upd.gh.usr%"
