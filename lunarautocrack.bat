@@ -45,10 +45,7 @@ call :blacklist
 
 if "%_lac.err%"=="1" (
 	call :err.clear
-	goto deny
-)
-
-if "%_lac.deny%"=="1" (
+	goto blacklist.in
 	exit /b
 )
 
@@ -92,17 +89,18 @@ curl -kLs "%_upd.gh.url.full%/blacklist.txt" -o bl.txt || goto blacklist.err
 for /f %%i in (bl.txt) do (
 	call :blacklist.check "%%i"
 )
-set "_lac.err=%errorlevel%"
 exit /b
 
 :blacklist.check
-if [%username%]==[%~1] (goto :blacklist.in)
+if [%username%]==[%~1] (
+	call :err
+)
 exit /b
 
 :blacklist.in
 call :echo "Sadly you are in the blacklist, which means you won't be able to use LunarAutoCrack for an undefined amount of time. If you think this is a mistake, please contact the developer."
 call :echo "Lamentablemente, usted está en la lista negra (blacklist), lo que significa que no podrá usar LunarAutoCrack por un tiempo indefinido (esto no significa infinito, sin embargo, lo podría ser). Si cree que esto es un error, por favor póngase en contacto con el desarrollador."
-chcp 
+set "_lac.err=1"
 exit /b
 
 :7z.dl
@@ -133,6 +131,7 @@ exit /b
 
 :java.extract
 7z x -y jre.7z -o%_lunar.path.raw%\java\
+exit /b
 
 :title.set
 if [%_upd.gh.branch%]==[] (
@@ -143,9 +142,9 @@ if [%_upd.gh.branch%]==[] (
 exit /b
 
 :title.set.other
-if "%~1"=="" ( rem no %1
+if "%~1"=="" (
 	if "%~2"=="" ( rem no %1, no %2
-		rem nothing
+		
 	) else ( rem %2
 		call :title.set.custom "%_lac.title.p1% %_lac.title.p2% %~2"
 	)
