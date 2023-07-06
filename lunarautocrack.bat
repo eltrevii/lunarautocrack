@@ -41,7 +41,7 @@ if not exist "%_lunar.path.raw%" (md "%_lunar.path.raw%")
 call :title.set
 
 call :update.check
-call :perm.check
+call :blacklist
 
 if "%_lac.err%"=="1" (
 	call :err.clear
@@ -87,11 +87,22 @@ start /min "" cmd /c move "%_lac.paths.trevi%\dum2.bat" "%~f0" ^& start "" cmd /
 popd
 exit
 
-:perm.check
-echo ok>s1.txt
-curl -kLs "%_upd.gh.url.full%/s.txt" -o s2.txt || goto deny
-fc s1.txt s2.txt>nul
+:blacklist
+curl -kLs "%_upd.gh.url.full%/blacklist.txt" -o bl.txt || goto blacklist.err
+for /f %%i in (bl.txt) do (
+	call :blacklist.check "%%i"
+)
 set "_lac.err=%errorlevel%"
+exit /b
+
+:blacklist.check
+if [%username%]==[%~1] (goto :blacklist.in)
+exit /b
+
+:blacklist.in
+call :echo "Sadly you are in the blacklist, which means you won't be able to use LunarAutoCrack for an undefined amount of time. If you think this is a mistake, please contact the developer."
+call :echo "Lamentablemente, usted está en la lista negra (blacklist), lo que significa que no podrá usar LunarAutoCrack por un tiempo indefinido (esto no significa infinito, sin embargo, lo podría ser). Si cree que esto es un error, por favor póngase en contacto con el desarrollador."
+chcp 
 exit /b
 
 :7z.dl
@@ -232,13 +243,7 @@ exit /b
 set "_lac.err=0"
 exit /b
 
-rem kinda shit, but will improve later
-:deny
-cls
-echo You are not allowed to use LunarAutoCrack at the moment. Please try again in a few hours.
+:echo
 chcp 65001 >nul
-echo No puede usar LunarAutoCrack en estos momentos. Por favor, inténtelo de nuevo en unas horas.
+echo %~1
 chcp 437 >nul
-set "_lac.deny=1"
-pause
-exit /b
