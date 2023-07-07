@@ -46,6 +46,7 @@ call :blacklist
 if "%_lac.err%"=="1" (
 	call :err.clear
 	goto blacklist.in
+	pause
 	exit /b
 )
 
