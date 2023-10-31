@@ -3,10 +3,13 @@ setlocal EnableDelayedExpansion
 
 set "_lac.ver=2.0-pre3"
 
-rem -- vars
-rem lunar stuff versions for every game version
-
-:: VARIABLE FOR VERS: !_lunarver.%_gamever.selected%.otherstuff!
+:: // vars - minecraft/lunar versions
+:: TO USE VARIABLES FOR VERS: !_lunarver.%_gamever.selected%.otherstuff!
+:: VARS:
+:: .gamever       = 1.8.9
+:: .gamever.und   = 1_8_9
+:: .gamever.root  = 1.8
+:: .gamever.flver = lunar jar files version
 
 :: 1.8.9
 set "_lunarver.1_8_9.gamever=1.8.9"
