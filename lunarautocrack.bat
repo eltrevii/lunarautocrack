@@ -1,4 +1,8 @@
 @echo off
+if [%~1] == [-d] (
+	echo on
+	set "_upd.disabled=yes"
+)
 setlocal EnableDelayedExpansion
 
 set "_lac.ver=2.0-pre3"
@@ -66,8 +70,7 @@ if not exist "%_lac.paths.trevi%" (md "%_lac.paths.trevi%")
 if not exist "%_lunar.path.raw%" (md "%_lunar.path.raw%")
 
 call :title.set
-
-call :upd.check
+if not "%_upd.disabled%"="yes" call :upd.check
 
 if not exist "%_lac.paths.trevi%" (
 	call :7z
