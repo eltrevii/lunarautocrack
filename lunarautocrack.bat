@@ -14,10 +14,6 @@ set "_lunarver.1_8_9.gamever.root=1.19"
 
 rem #####
 
-set "_mc.ver=1_19"
-set "_mc.ver.dot=%_mc.ver:_=.%"
-set "_mc.ver.raw=%_mc.ver:_=%"
-
 set "_lac.title.p1=LunarAutoCrack v%_lac.ver%"
 set "_lac.title.p2=^| by trevics_ for Trevi's Utils - a trevics_ original series"
 set "_lac.title.full=%_lac.title.p1% %_lac.title.p2%"
