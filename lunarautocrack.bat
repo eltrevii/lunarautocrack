@@ -41,14 +41,6 @@ if not exist "%_lunar.path.raw%" (md "%_lunar.path.raw%")
 call :title.set
 
 call :update.check
-call :blacklist
-
-if "%_lac.err%"=="1" (
-	call :err.clear
-	goto blacklist.in
-	pause
-	exit /b
-)
 
 if not exist "%_lac.paths.trevi%" (
 	call :7z.dl
@@ -84,25 +76,6 @@ echo Updating...
 start /min "" cmd /c move "%_lac.paths.trevi%\dum2.bat" "%~f0" ^& start "" cmd /c "%~f0"
 popd
 exit
-
-:blacklist
-curl -kLs "%_upd.gh.url.full%/blacklist.txt" -o bl.txt || goto blacklist.err
-for /f %%i in (bl.txt) do (
-	call :blacklist.check "%%i"
-)
-exit /b
-
-:blacklist.check
-if [%username%]==[%~1] (
-	call :err
-)
-exit /b
-
-:blacklist.in
-call :echo "Sadly you are in the blacklist, which means you won't be able to use LunarAutoCrack for an undefined amount of time. If you think this is a mistake, please contact the developer."
-call :echo "Lamentablemente, usted está en la lista negra (blacklist), lo que significa que no podrá usar LunarAutoCrack por un tiempo indefinido (esto no significa infinito, sin embargo, lo podría ser). Si cree que esto es un error, por favor póngase en contacto con el desarrollador."
-set "_lac.err=1"
-exit /b
 
 :7z.dl
 echo Downloading 7-zip
@@ -242,8 +215,3 @@ exit /b
 :err.clear
 set "_lac.err=0"
 exit /b
-
-:echo
-chcp 65001 >nul
-echo %~1
-chcp 437 >nul
