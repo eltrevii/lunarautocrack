@@ -1,5 +1,5 @@
 @echo off
-title LunarAutoCrack Downloader ^| by eltrevi_ for Trevi's Utils - an eltrevi_ original series
+title LunarAutoCrack Downloader ^| by tervics_ for Trevi's Utils - a trevics_ original series
 
 set "_upd.usr=eltrevii"
 set "_upd.branch=infdev"
