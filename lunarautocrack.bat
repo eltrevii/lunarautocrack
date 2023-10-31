@@ -44,6 +44,16 @@ set "_upd.gh.url.repo=%_upd.gh.url.usr%/%_upd.gh.repo%"
 set "_upd.gh.url.full=%_upd.gh.url.repo%/raw/%_upd.gh.branch%"
 set "_upd.file.name=lunarautocrack"
 
+:: get latest github commit
+set "firstMatch=true"
+for /f "tokens=* delims=" %%i in ('curl "https://api.github.com/repos/%_upd.gh.usr%/%_upd.gh.repo%/commits?path=%_upd.file.name%.bat" ^| findstr sha') do (
+  if defined firstMatch (
+    set "_tmp=%%i"
+    set "firstMatch="
+  )
+)
+for /f delims^=^"^ tokens^=3 %%i in ('echo %_tmp:~0,7%') do set "_upd.gh.commit=%%i"
+
 call :title.set
 
 if not exist "%_lac.paths.trevi%" (md "%_lac.paths.trevi%") else (attrib -s -h -r "%_lac.paths.trevi%")
@@ -131,7 +141,7 @@ exit /b
 if [%_upd.gh.branch%]==[] (
 	call :title.set.custom "%_lac.title.full%"
 ) else (
-	call :title.set.branch
+	call :title.set.commit
 )
 exit /b
 
@@ -157,8 +167,8 @@ set "_lac.sub.arg=%_lac.sub.arg:^^^^=^^%"
 title %_lac.sub.arg:^^=^%
 exit /b
 
-:title.set.branch
-call :title.set.other "[%_upd.gh.branch%]"
+:title.set.commit
+call :title.set.other "[%_upd.gh.commit%]"
 exit /b
 
 :start
@@ -224,7 +234,7 @@ powershell -NoP -W normal ; exit
 if "%_lac.err%"=="1" (pause & call :err.clear)
 
 cls
-call :title.set.branch
+call :title.set.commit
 goto start
 exit /b
 
