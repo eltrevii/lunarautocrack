@@ -3,28 +3,33 @@ setlocal EnableDelayedExpansion
 
 set "_lac.ver=2.0-pre3"
 
-rem ##### lunar stuff versions for every game version
+rem -- vars
+rem lunar stuff versions for every game version
+
+:: 1.8.9
 set "_lunarver.1_8_9.gamever=1.8.9"
 set "_lunarver.1_8_9.gamever.und=1_8_9"
 set "_lunarver.1_8_9.gamever.root=1.8"
 
+:: 1.19
 set "_lunarver.1_19.gamever=1.19"
 set "_lunarver.1_8_9.gamever.und=1_19"
 set "_lunarver.1_8_9.gamever.root=1.19"
 
-rem #####
-
+rem // vars - title
 set "_lac.title.p1=LunarAutoCrack v%_lac.ver%"
 set "_lac.title.p2=^| by trevics_ for Trevi's Utils - a trevics_ original series"
 set "_lac.title.full=%_lac.title.p1% %_lac.title.p2%"
 set "_lac.paths.trevi=%userprofile%\.trevi"
 
+rem // vars - misc
 set "_lunar.path.raw=%_lac.paths.trevi%\lac"
 set "_lunar.path.rev=%_lunar.path.raw:\=/%"
 set "_lunar.multiver.raw=%_lunar.path.raw%\lunar\offline\multiver"
 set "_lunar.multiver.rev=%_lunar.multiver.raw:\=/%"
 set "_lunar.ver.fl=0.1.0"
 
+rem // vars - update
 set "_upd.gh.usr=eltrevii"
 set "_upd.gh.repo=lunarautocrack"
 set "_upd.gh.branch=dev"
