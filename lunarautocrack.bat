@@ -51,66 +51,70 @@ if not exist "%_lunar.path.raw%" (md "%_lunar.path.raw%")
 
 call :title.set
 
-call :update.check
+call :upd.check
 
 if not exist "%_lac.paths.trevi%" (
-	call :7z.dl
+	call :7z
 ) else (
-	7z >nul 2>&1 || call :7z.dl
+	7z >nul 2>&1 || call :7z
 )
 
 if not exist "%_lunar.path.raw%\java\" (
-	call :java.dl
-	call :java.extract
+	call :java -dl
+	call :java -x
 )
 
 if not exist "%_lunar.multiver.raw%\v%_lunarver.!_gamever.selected!.gamever.und%-*.jar" (
 	if not exist "%_lac.paths.trevi%\lunar.7z" (
-		call :lunar.dl
+		call :lunar -dl
 	)
-	call :lunar.extract
+	call :lunar -x
 )
 
 call :start
 exit /b
 
-:update.check
+:upd.check
+echo.
 echo Checking for updates...
 curl -#kL "%_upd.gh.url.full%/%_upd.file.name%.bat" -o dum2.bat || exit /b
-fc "%~f0" "dum2.bat">nul || (goto update.apply)
+fc "%~f0" "dum2.bat">nul || (goto upd.apply)
 cls
 exit /b
 
-:update.apply
+:upd.apply
 echo.
 echo Updating...
 start /min "" cmd /c move "%_lac.paths.trevi%\dum2.bat" "%~f0" ^& start "" cmd /c "%~f0"
 popd
 exit
 
-:7z.dl
-echo Downloading 7-zip
+:7z
+echo.
+echo Downloading 7-zip...
 curl -#kLO "%_upd.gh.url.usr%/stuff/raw/main/7z/{7z.exe,7-zip.dll,7z.dll,7-zip32.dll}"
 echo.
 exit /b
 
-:lunar.dl
-echo Downloading Lunar
-curl -#kLO "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunar%_lunarver.!_gamever.selected!.gamever%.7z"
-curl -#kLO "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunaragents.7z"
+:lunar
+echo.
+if [%~1] == [-dl] (
+	echo Downloading Lunar...
+	curl -#kLO "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunar%_lunarver.!_gamever.selected!.gamever%.7z"
+	curl -#kLO "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunaragents.7z"
+)
+if [%~1] == [-x] (
+	echo Extracting lunar...
+	7z x -y lunar%_lunarver.!_gamever.selected!.gamever%.7z -o%_lunar.path.raw%\lunar\ 2>nul || call :err
+	7z x -y lunaragents.7z -o%_lunar.path.raw%\agents\ 2>nul || call :err
+	if "%_lac.err%"=="1" (goto enderr)
+)
 cls
 exit /b
 
 :java.dl
 echo Downloading Java
 curl -#kL "%_upd.gh.url.repo%/raw/jre/jdk-17-jre.7z" -o jre.7z
-cls
-exit /b
-
-:lunar.extract
-7z x -y lunar%_lunarver.!_gamever.selected!.gamever%.7z -o%_lunar.path.raw%\lunar\ 2>nul || call :err
-7z x -y lunaragents.7z -o%_lunar.path.raw%\agents\ 2>nul || call :err
-if "%_lac.err%"=="1" (goto enderr)
 cls
 exit /b
 
