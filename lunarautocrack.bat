@@ -1,11 +1,12 @@
 @echo off
+setlocal EnableDelayedExpansion
+
 if [%~1] == [-d] (
 	echo on
 	set "_upd.disabled=yes"
 )
-setlocal EnableDelayedExpansion
 
-set "_lac.ver=2.0-pre3"
+set "_lac.ver=2.0-pre3-dev"
 
 :: // vars - minecraft/lunar versions
 :: TO USE VARIABLES FOR VERS: !_lunarver.%_gamever.selected%.otherstuff!
