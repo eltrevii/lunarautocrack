@@ -176,6 +176,11 @@ exit /b
 call :title.set.other "[%_upd.gh.commit%]"
 exit /b
 
+:set
+echo %~1
+set /p "%~2=> "
+exit /b	
+
 :start
 cls
 popd
@@ -190,8 +195,8 @@ if exist %_lunar.path.raw%\username.txt (
 	set "_username.last.display= [!_username.last!]"
 ) else (set "_username.last.display=")
 
-echo Set username%_username.last.display%
-set /p "_username.new=> "
+
+call :set "Set username%_username.last.display%" _username.new
 
 if "%_username.new%"=="" (
 	if not "%_username.last%"=="" (
@@ -210,8 +215,7 @@ if exist %_lunar.path.raw%\ram.txt (
 	set "_ram.last.display="
 )
 
-echo RAM in MB (1GB = 1024) - recommended: 4096%_ram.last.display%
-set /p "_rammb=> "
+call :set "RAM in MB (1GB = 1024) - recommended: 4096%_ram.last.display%" _rammb
 
 if "%_rammb%"=="" (
 	if not "%_ram.last%"=="" (
