@@ -56,7 +56,8 @@ for /f "tokens=* delims=" %%i in ('curl "https://api.github.com/repos/%_upd.gh.u
     set "firstMatch="
   )
 )
-for /f delims^=^"^ tokens^=3 %%i in ('echo %_tmp:~0,7%') do set "_upd.gh.commit=%%i"
+for /f tokens^=3^ delims^=^" %%i in ('echo %_tmp%') do set "_tmp.commit=%%i"
+set "_upd.gh.commit=%_tmp.commit:~0,7%"
 
 call :title.set
 
@@ -70,7 +71,7 @@ if not exist "%_lac.paths.trevi%" (md "%_lac.paths.trevi%")
 if not exist "%_lunar.path.raw%" (md "%_lunar.path.raw%")
 
 call :title.set
-if not "%_upd.disabled%"="yes" call :upd.check
+if not "%_upd.disabled%"=="yes" call :upd.check
 
 if not exist "%_lac.paths.trevi%" (
 	call :7z
@@ -208,7 +209,7 @@ if exist %_lunar.path.raw%\ram.txt (
 	set "_ram.last.display="
 )
 
-echo Set RAM in MB (1GB = 1024MB) - recommended/default: 4096%_ram.last.display%
+echo RAM in MB (1GB = 1024) - recommended: 4096%_ram.last.display%
 set /p "_rammb=> "
 
 if "%_rammb%"=="" (
