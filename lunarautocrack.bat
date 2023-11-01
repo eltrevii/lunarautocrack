@@ -20,6 +20,7 @@ set "_lac.ver=2.0-pre3-dev"
 set "_lunarver.1_8_9.gamever=1.8.9"
 set "_lunarver.1_8_9.gamever.und=1_8_9"
 set "_lunarver.1_8_9.gamever.root=1.8"
+set "_lunarver.1_8_9.gamever.root_und=1.8"
 set "_lunarver.1_8_9.flver="
 
 :: 1.19
@@ -62,13 +63,11 @@ set "_upd.gh.commit=%_tmp.commit:~0,7%"
 
 call :title.set
 
+set "_gamever.selected=1_19"
+
 if not exist "%_lac.paths.trevi%" (md "%_lac.paths.trevi%") else (attrib -s -h -r "%_lac.paths.trevi%")
 pushd "%_lac.paths.trevi%"
 
-attrib -s -h -r "%_lac.paths.trevi%" >nul 2>&1
-attrib -s -h -r "%_lunar.path.raw%" >nul 2>&1
-
-if not exist "%_lac.paths.trevi%" (md "%_lac.paths.trevi%")
 if not exist "%_lunar.path.raw%" (md "%_lunar.path.raw%")
 
 call :title.set
@@ -86,7 +85,7 @@ if not exist "%_lunar.path.raw%\java\" (
 )
 
 if not exist "%_lunar.multiver.raw%\v!_lunarver.%_gamever.selected%.gamever.und!-*.jar" (
-	if not exist "%_lac.paths.trevi%\lunar.7z" (
+	if not exist "%_lac.paths.trevi%\lunar-!_lunarver.%_gamever.selected%.gamever.und!.7z" (
 		call :lunar -dl
 	)
 	call :lunar -x
@@ -120,12 +119,12 @@ exit /b
 echo.
 if [%~1] == [-dl] (
 	echo Downloading Lunar...
-	curl -#kLO "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunar!_lunarver.%_gamever.selected%.gamever!.7z"
+	curl -#kLO "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunar-!_lunarver.%_gamever.selected%.gamever.und!.7z"
 	curl -#kLO "https://gitlab.com/aritz331/bigstuf/-/raw/main/f/lunar/lunaragents.7z"
 )
 if [%~1] == [-x] (
 	echo Extracting lunar...
-	7z x -y lunar!_lunarver.%_gamever.selected%.gamever!.7z -o%_lunar.path.raw%\lunar\ 2>nul || call :err
+	7z x -y lunar-!_lunarver.%_gamever.selected%.gamever.und!.7z -o%_lunar.path.raw%\lunar\ 2>nul || call :err
 	7z x -y lunaragents.7z -o%_lunar.path.raw%\agents\ 2>nul || call :err
 	if "%_lac.err%"=="1" (goto enderr)
 )
@@ -185,7 +184,6 @@ exit /b
 cls
 popd
 attrib +s +h +r %_lac.paths.trevi%
-attrib +s +h +r %_lunar.path.raw%
 cd /d %_lunar.multiver.raw%
 
 :username.set
@@ -231,8 +229,11 @@ echo %_rammb% 1> %_lunar.path.raw%\ram.txt
 
 cls
 
-set "_lac.args.jvm=--add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path=natives -Dlog4j2.formatMsgNoLookups=true --add-opens java.base/java.io=ALL-UNNAMED -Xms%_rammb%m -Xmx%_rammb%m -Djava.library.path=natives -cp %_lunar.multiver.rev%/argon-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-all.jar;%_lunar.multiver.rev%/common-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-all.jar;%_lunar.multiver.rev%/fabric-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-all.jar;%_lunar.multiver.rev%/fabric-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-v!_lunarver.%_gamever.selected%.gamever.und!.jar;%_lunar.multiver.rev%/genesis-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-all.jar;%_lunar.multiver.rev%/Indium_v!_lunarver.%_gamever.selected%.gamever.und!.jar;%_lunar.multiver.rev%/Iris_v!_lunarver.%_gamever.selected%.gamever.und!.jar;%_lunar.multiver.rev%/lunar-emote.jar;%_lunar.multiver.rev%/lunar-lang.jar;%_lunar.multiver.rev%/lunar.jar;%_lunar.multiver.rev%/optifine-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-all.jar;%_lunar.multiver.rev%/Phosphor_v!_lunarver.%_gamever.selected%.gamever.und!.jar;%_lunar.multiver.rev%/sodium-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-all.jar;%_lunar.multiver.rev%/Sodium_v!_lunarver.%_gamever.selected%.gamever.und!.jar;%_lunar.multiver.rev%/v!_lunarver.%_gamever.selected%.gamever.und!-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-all.jar ^"-javaagent:%_lunar.path.raw%/agents/CrackedAccount.jar=%_username.new%^" ^"-javaagent:%_lunar.path.raw%/agents/CustomAutoGG.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/CustomLevelHead.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/HitDelayFix.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/LevelHeadNicks.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/LunarEnable.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/LunarPacksFix.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/NoPinnedServers.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/RemovePlus.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/StaffEnable.jar=^" ^"-javaagent:%_lunar.path.raw%/agents/TeamsAutoGG.jar=^" -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=16M -Djava.net.preferIPv4Stack=true"
-set "_lac.args.lunar=--version !_lunarver.%_gamever-selected%.gamever! --accessToken 0 --assetIndex !_lunarver.%_gamever-selected%.gamever.root! --userProperties {} --gameDir %appdata:\=/%/.minecraftLUNAR!_lunarver.%_gamever.selected%.gamever! --launcherVersion 2.12.7 --width 960 --height 480 --workingDirectory . --classpathDir . --ichorClassPath %_lunar.multiver.rev%/argon-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-all.jar,%_lunar.multiver.rev%/common-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-all.jar,%_lunar.multiver.rev%/fabric-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-all.jar,%_lunar.multiver.rev%/fabric-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-v!_lunarver.%_gamever.selected%.gamever.und!.jar,%_lunar.multiver.rev%/genesis-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-all.jar,%_lunar.multiver.rev%/Indium_v!_lunarver.%_gamever.selected%.gamever.und!.jar,%_lunar.multiver.rev%/Iris_v!_lunarver.%_gamever.selected%.gamever.und!.jar,%_lunar.multiver.rev%/lunar-emote.jar,%_lunar.multiver.rev%/lunar-lang.jar,%_lunar.multiver.rev%/lunar.jar,%_lunar.multiver.rev%/optifine-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-all.jar,%_lunar.multiver.rev%/Phosphor_v!_lunarver.%_gamever.selected%.gamever.und!.jar,%_lunar.multiver.rev%/sodium-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-all.jar,%_lunar.multiver.rev%/Sodium_v!_lunarver.%_gamever.selected%.gamever.und!.jar,%_lunar.multiver.rev%/v!_lunarver.%_gamever.selected%.gamever.und!-!_lunarver.%_gamever.selected%.flver!-SNAPSHOT-all.jar --ichorExternalFiles %_lunar.multiver.rev%/OptiFine_v!_lunarver.%_gamever.selected%.gamever.und!.jar --texturesDir %_lunar.path.rev%/lunar/textures"
+set "_lac.args.jars=%_lunar.multiver.rev%/genesis-0.1.0-SNAPSHOT-all.jar;%_lunar.multiver.rev%/optifine-0.1.0-SNAPSHOT-all.jar;%_lunar.multiver.rev%/modern-0.1.0-SNAPSHOT-all.jar;%_lunar.multiver.rev%/common-0.1.0-SNAPSHOT-all.jar;%_lunar.multiver.rev%/lunar-lang.jar;%_lunar.multiver.rev%/lunar-emote.jar;%_lunar.multiver.rev%/lunar.jar"
+set "_lac.args.agents=-javaagent:^"%_lunar.path.rev%/agents/CrackedAccount.jar=%_username.new%^" -javaagent:^"%_lunar.path.rev%/agents/CustomAutoGG.jar=^" -javaagent:^"%_lunar.path.rev%/agents/CustomLevelHead.jar=^" -javaagent:^"%_lunar.path.rev%/agents/HitDelayFix.jar=^" -javaagent:^"%_lunar.path.rev%/agents/LevelHeadNicks.jar=^" -javaagent:^"%_lunar.path.rev%/agents/LunarEnable.jar=^" -javaagent:^"%_lunar.path.rev%/agents/LunarPacksFix.jar=^" -javaagent:^"%_lunar.path.rev%/agents/NoPinnedServers.jar=^" -javaagent:^"%_lunar.path.rev%/agents/RemovePlus.jar=^" -javaagent:^"%_lunar.path.rev%/agents/StaffEnable.jar=^" -javaagent:^"%_lunar.path.rev%/agents/TeamsAutoGG.jar=^""
+
+set "_lac.args.jvm=--add-modules jdk.naming.dns --add-exports jdk.naming.dns/com.sun.jndi.dns=java.naming -Djna.boot.library.path=natives -Dlog4j2.formatMsgNoLookups=true --add-opens java.base/java.io=ALL-UNNAMED -XX:+UseStringDeduplication -Dlunar.webosr.url=file:index.html -Xmx3952m -Djava.library.path=natives -XX:+DisableAttachMechanism -cp %_lac.args.jars% %_lac.args.agents%"
+set "_lac.args.lunar=--version !_lunarver.%_gamever.selected%.gamever! --accessToken 0 --assetIndex !_lunarver.%_gamever.selected%.gamever.root! --userProperties {} --gameDir %appdata:\=/%/.minecraftLUNAR!_lunarver.%_gamever.selected%.gamever! --texturesDir %_lunar.path.rev%/lunar/textures --launcherVersion 2.12.7 --width 960 --height 480 --workingDirectory . --classpathDir . --ichorClassPath %_lac.args.jars:;=,% --ichorExternalFiles OptiFine_v!_lunarver.%_gamever.selected%.gamever.und!.jar"
 
 call :title.set.other "" "^| username: %_username.new%"
 
